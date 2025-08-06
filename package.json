@@ -3,6 +3,10 @@
   "version": "4.0.1",
   "description": "Calculator Matematic CLI Avansat",
   "main": "index.js",
+  "bin": {
+    "mathcli-pro": "bin/mathcli-pro"
+  },
+  "type": "module",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"No tests yet\""
@@ -11,8 +15,24 @@
     "cli",
     "math",
     "calculator",
+    "terminal",
+    "convert",
+    "chart",
+    "unit",
+    "currency",
     "nodejs"
   ],
-  "author": "",
-  "license": "MIT"
+  "author": "gzeu <pricopgeorge@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gzeu/mathcli-pro.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "cli-chart": "^0.3.1",
+    "csv-parse": "^6.1.0",
+    "inquirer": "^12.9.0",
+    "mathjs": "^14.6.0",
+    "node-fetch": "^3.3.2"
+  }
 }
