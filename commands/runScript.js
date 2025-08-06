@@ -9,13 +9,19 @@ export async function runScript(scriptFile) {
   const lines = fs.readFileSync(scriptFile, 'utf8').split(/\r?\n/).filter(Boolean);
   const results = [];
   for (const line of lines) {
-    const [cmd, ...args] = line.split(' ');
+    const match = line.match(/^(\w+)(?:\s+(.+))?$/);
+    if (!match) {
+      results.push({ error: `Invalid line: ${line}` });
+      continue;
+    }
+    const cmd = match[1];
+    const arg = match[2] || '';
     switch (cmd) {
       case 'calculate':
-        results.push(calculate(args.join(' ')));
+        results.push(calculate(arg));
         break;
       case 'fetch-currency':
-        if (args[0]) results.push(await fetchCurrency(args[0]));
+        if (arg) results.push(await fetchCurrency(arg));
         break;
       default:
         results.push({ error: `Unknown command in script: ${cmd}` });

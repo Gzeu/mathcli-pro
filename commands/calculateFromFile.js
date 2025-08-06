@@ -14,7 +14,9 @@ export function calculateFromFile(filePath, operation, outputFile) {
     }
   } else if (filePath.endsWith('.csv')) {
     try {
-      const content = fs.readFileSync(filePath, 'utf8');
+      let content = fs.readFileSync(filePath, 'utf8');
+      // Normalizează linii cu \n literal (dacă există)
+      content = content.replace(/\\n/g, '\n');
       data = parse(content, { columns: true });
     } catch (err) {
       return { error: 'Invalid CSV file.' };

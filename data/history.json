@@ -1,0 +1,100 @@
+[
+  {
+    "type": "calculate",
+    "input": "5*5+2",
+    "result": 27,
+    "date": "2025-08-06T23:46:15.319Z"
+  },
+  {
+    "type": "calculate-from-file",
+    "input": {
+      "file": "test.csv",
+      "op": "sum(col1)",
+      "output": null
+    },
+    "result": {
+      "column": "col1",
+      "sum": 0
+    },
+    "date": "2025-08-06T23:46:29.326Z"
+  },
+  {
+    "type": "calculate-from-file",
+    "input": {
+      "file": "test.csv",
+      "op": "sum(col1)",
+      "output": null
+    },
+    "result": {
+      "column": "col1",
+      "sum": 9
+    },
+    "date": "2025-08-06T23:46:53.636Z"
+  },
+  {
+    "type": "run-script",
+    "input": "script.txt",
+    "result": [
+      {},
+      {
+        "error": "Unknown command in script: 10*10"
+      }
+    ],
+    "date": "2025-08-06T23:47:07.708Z"
+  },
+  {
+    "type": "run-script",
+    "input": "script.txt",
+    "result": [
+      {},
+      {
+        "error": "Invalid line: 10*10"
+      }
+    ],
+    "date": "2025-08-06T23:47:24.001Z"
+  },
+  {
+    "type": "run-script",
+    "input": "script.txt",
+    "result": [
+      {},
+      {
+        "error": "Invalid line: 10*10"
+      }
+    ],
+    "date": "2025-08-06T23:47:32.346Z"
+  },
+  {
+    "type": "run-script",
+    "input": "script.txt",
+    "result": [
+      {
+        "result": 100
+      }
+    ],
+    "date": "2025-08-06T23:47:39.384Z"
+  },
+  {
+    "type": "fetch-currency",
+    "input": {
+      "currency": "USD",
+      "apiIdx": 0
+    },
+    "result": {
+      "error": "No rates found or invalid response from API."
+    },
+    "date": "2025-08-06T23:47:57.314Z"
+  },
+  {
+    "type": "plot-chart",
+    "input": "1,2,3,4,5",
+    "result": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "date": "2025-08-06T23:48:05.787Z"
+  }
+]

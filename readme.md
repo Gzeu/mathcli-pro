@@ -26,7 +26,7 @@ npm start
 |-----------------------|--------------------------------------------------------------------|-------------------------------------------------------|
 | calculate             | Advanced math expression evaluation                                 | node index.js calculate "2+2*5"                       |
 | convert               | Unit conversions (placeholder)                                      | node index.js convert "100 cm to m"                   |
-| history               | Show calculation history (not yet implemented)                      | node index.js history                                 |
+| history               | Show calculation history (persistent, ultimele 20 operații)         | node index.js history                                 |
 | optimize              | Math optimization (placeholder)                                     | node index.js optimize "minimize x^2+3x-5"            |
 | calculate-from-file   | Calculate from CSV/JSON file, export result                        | node index.js calculate-from-file data.csv "sum(col1)" --output results.json |
 | fetch-currency        | Fetch currency rates from external API                              | node index.js fetch-currency USD frankfurter.app       |
@@ -34,12 +34,26 @@ npm start
 | plot-chart            | Plot a bar chart in the terminal from a list of numbers             | node index.js plot-chart 1 2 3 4 5 6                  |
 | help                  | Show help and usage examples                                        | node index.js help                                    |
 
+
 ## Example script.txt
 ```
 calculate 2+2*5
 fetch-currency USD
 calculate sin(pi/2)
 plot-chart 1 2 3 4 5 6
+```
+
+## Persistent History Example
+After rularea mai multor comenzi, poți vedea ultimele 20 operații cu:
+
+```sh
+node index.js history
+```
+Output exemplu:
+```
+[1] 2025-08-07T12:00:00.000Z | calculate | input: "2+2*5" | result: 12
+[2] 2025-08-07T12:01:00.000Z | convert | input: "100 cm to m" | result: "Conversion: 100 cm to m"
+[3] 2025-08-07T12:02:00.000Z | calculate-from-file | input: {"file":"test.csv","op":"sum(col1)","output":null} | result: {"column":"col1","sum":9}
 ```
 
 ## Plotting Charts
@@ -74,6 +88,11 @@ MathCLI-Pro/
 1. Rulează `npm publish` după validarea tuturor funcționalităților.
 2. Instalează global cu `npm install -g mathcli-pro` și rulează `mathcli-pro` din orice terminal.
 3. Contribuie sau raportează probleme pe [GitHub](https://github.com/gzeu/mathcli-pro).
+
+---
+
+## Help complet din CLI
+Rulează `node index.js help` pentru a vedea toate comenzile, exemple și explicații. Pentru detalii suplimentare, consultă și acest README.
 🤝 Contributing
 Fork the repository.
 
