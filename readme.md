@@ -1,3 +1,78 @@
+### MathCLI Pro - Calculator Matematic CLI Avansat
+
+**MathCLI Pro** este un instrument profesional de linie de comandă pentru calcule matematice avansate, conversii de unități, istoric persistent și optimizări de performanță. Proiectul este modular, scalabil și ușor de extins, fiind ideal pentru developeri, studenți sau utilizatori tehnici care preferă terminalul.
+---
+
+## 📦 Instalare
+1. **Cerințe:**
+   - Node.js >= 18
+   - npm
+2. **Clonează repository-ul:**
+   ```sh
+   git clone https://github.com/gzeu/mathcli-pro.git
+3. **Instalează dependențele:**
+   ```sh
+   npm install
+---
+
+## 🚀 Utilizare
+Pornește aplicația cu:
+```sh
+npm start
+### Exemple de comenzi:
+- **Calcule:**
+  ```sh
+  node index.js calculate "2+2*5"
+- **Conversii unități:**
+  ```sh
+  node index.js convert "100 cm to m"
+- **Istoric:**
+  ```sh
+  node index.js history
+- **Optimizare:**
+  ```sh
+  node index.js optimize "minimize x^2+3x-5"
+- **Ajutor:**
+  ```sh
+  node index.js help
+---
+
+## 🗂️ Structura Proiectului
+```
+MathCLI-Pro/
+├── package.json               # Configurații npm, scripturi și dependințe
+├── index.js                   # Entry point CLI
+├── utils/                     # Module utilitare (calcule, validări, etc.)
+├── data/                      # Date persistente (istoric, probleme)
+├── commands/                  # Comenzi CLI (calculate, convert, optimize, help)
+├── config/                    # Configurații globale
+└── tests/                     # Teste unitare și de integrare
+```
+
+---
+
+## 🤝 Contribuie
+1. Forkează repository-ul
+2. Creează un branch nou (`feature/nume-functie`)
+3. Fă modificările și commit
+4. Deschide un Pull Request
+5. Discută modificările în secțiunea de review
+
+Orice sugestie sau bug poate fi raportat prin Issues.
+---
+
+## 📄 Licență
+Acest proiect este licențiat sub MIT License.
+
+---
+
+## 📢 Contact & Suport
+- [GitHub Issues](https://github.com/gzeu/mathcli-pro/issues)
+- Email: [adresa ta aici]
+
+---
+
+> Pentru detalii suplimentare, consultă documentația din folderul `commands/help-command.js` sau folosește comanda `help` în CLI.
 ### Arhitectura Completă a Proiectului: Calculator Matematic CLI Avansat
 
 Salut! Bazându-mă pe discuțiile noastre anterioare, unde am stabilit funcționalitățile existente (cum ar fi calcule matematice, conversii unități, istoric și optimizări), îți propun o **arhitectură completă** pentru proiect. Aceasta este concepută să fie modulară, scalabilă și ușor de extins, fără a include niciun fragment de cod. Am pus nume descriptive pentru toate componentele, fișierele și modulele, pentru claritate. Arhitectura urmează un model MVC-ish adaptat pentru CLI (Model pentru date, View pentru output terminal, Controller pentru comenzi), cu accent pe separarea responsabilităților.
