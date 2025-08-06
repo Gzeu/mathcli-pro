@@ -1,0 +1,13 @@
+{
+  "name": "mathcli-pro",
+  "version": "4.0.0",
+  "description": "Calculator Matematic CLI Avansat",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"No tests yet\""
+  },
+  "keywords": ["cli", "math", "calculator", "nodejs"],
+  "author": "",
+  "license": "MIT"
+}
