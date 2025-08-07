@@ -16,6 +16,17 @@ import { plotChart } from './commands/plotChart.js';
 import { runScript } from './commands/runScript.js';
 import { showHelp } from './commands/help.js';
 
+
+// Alias-uri CLI pentru acțiuni rapide
+const ALIASES = {
+  calc: 'calculate',
+  conv: 'convert',
+  hist: 'history',
+  opt: 'optimize',
+  help: 'help',
+  exit: 'exit',
+};
+
 const [,, command, ...args] = process.argv;
 
 async function mainMenu() {
@@ -48,12 +59,19 @@ async function mainMenu() {
     process.exit(0);
   });
   while (true) {
-    const { action } = await inquirer.prompt({
-      type: 'list',
-      name: 'action',
-      message: chalk.cyan('Alege o categorie sau funcție:'),
-      choices: categories
-    });
+    let action;
+    // Dacă există argument CLI, folosește-l ca acțiune (inclusiv alias)
+    if (command) {
+      action = ALIASES[command] || command;
+    } else {
+      const resp = await inquirer.prompt({
+        type: 'list',
+        name: 'action',
+        message: chalk.cyan('Alege o categorie sau funcție:'),
+        choices: categories
+      });
+      action = resp.action;
+    }
     if (action === 'exit') {
       console.log(chalk.green('Goodbye!'));
       process.exit(0);
@@ -61,12 +79,26 @@ async function mainMenu() {
     switch (action) {
       case 'calculate':
         console.log(chalk.yellow('Exemplu: 2+2*5 → 12'));
-        // Implementare directă sau apel la modulul calculate
-        const { expr } = await inquirer.prompt({ type: 'input', name: 'expr', message: 'Introduceți expresia matematică:' });
+        // Validare expresie matematică simplă (doar caractere permise)
+        const { expr } = await inquirer.prompt({
+          type: 'input',
+          name: 'expr',
+          message: 'Introduceți expresia matematică:',
+          validate: input => {
+            if (!input.trim()) return 'Expresia nu poate fi goală!';
+            if (!/^[\d\s\+\-\*\/\^\(\)\.,a-zA-Z]+$/.test(input)) return 'Expresie invalidă! Folosiți doar cifre, operatori și funcții.';
+            return true;
+          },
+          suffix: chalk.gray('  ex: 2+2*5, sin(pi/2)+sqrt(16)')
+        });
         try {
           const result = calculate(expr);
-          console.log(chalk.green('Rezultat:'), result);
-          await saveHistory({ type: 'calculate', input: expr, result, date: new Date().toISOString() });
+          if (result.error) {
+            console.log(chalk.red('Eroare la calcul:'), result.error);
+          } else {
+            console.log(chalk.green('Rezultat:'), result);
+            await saveHistory({ type: 'calculate', input: expr, result, date: new Date().toISOString() });
+          }
         } catch (e) {
           console.log(chalk.red('Eroare la calcul:'), e.message);
         }
@@ -76,19 +108,80 @@ async function mainMenu() {
         const { query } = await inquirer.prompt({ type: 'input', name: 'query', message: 'Introduceți funcția de optimizat:' });
         try {
           const result = optimize(query);
-          console.log(chalk.green('Optimizare:'), result);
-          await saveHistory({ type: 'optimize', input: query, result, date: new Date().toISOString() });
+          if (result.error) {
+            console.log(chalk.red('Eroare la optimizare:'), result.error);
+          } else {
+            // Highlight rezultat principal
+            console.log(chalk.bold.cyan('\n=== Rezultat Optimizare ==='));
+            console.log(chalk.greenBright(` ${result.result}`));
+            console.log(chalk.yellowBright(` Punct extrem: x = ${result.extremum.x}, y = ${result.extremum.y}`));
+            // Tabel sumar puncte critice
+            if (result.allPoints && result.allPoints.length > 1) {
+              console.log(chalk.gray('\nPuncte critice (x, y):'));
+              result.allPoints.forEach(pt => {
+                const mark = (pt.x === result.extremum.x) ? chalk.bgGreen(' <extremum>') : '';
+                console.log(`  x = ${pt.x}, y = ${pt.y}${mark}`);
+              });
+            }
+            // Grafic ASCII simplu pe interval [-10,10]
+            try {
+              const { create, all } = await import('mathjs');
+              const math = create(all);
+              const funcMatch = query.match(/^(minimize|maximize)\s+(.+)$/i);
+              if (funcMatch) {
+                const func = funcMatch[2];
+                const variable = 'x';
+                const points = [];
+                for (let x = -10; x <= 10; x += 1) {
+                  let y = NaN;
+                  try { y = math.evaluate(func, { [variable]: x }); } catch {}
+                  points.push({ x, y });
+                }
+                // Normalizează pentru grafic
+                const minY = Math.min(...points.map(p => p.y));
+                const maxY = Math.max(...points.map(p => p.y));
+                const height = 10;
+                const scaleY = (y) => Math.round((y - minY) / (maxY - minY) * (height - 1));
+                let chart = Array.from({ length: height }, () => Array(points.length).fill(' '));
+                points.forEach((p, i) => {
+                  if (!isNaN(p.y)) {
+                    const yIdx = height - 1 - scaleY(p.y);
+                    chart[yIdx][i] = (Math.abs(p.x - result.extremum.x) < 1e-6) ? chalk.bgGreen('●') : chalk.cyan('•');
+                  }
+                });
+                console.log(chalk.gray('\nGrafic ASCII (x ∈ [-10,10]):'));
+                chart.forEach(row => console.log(' ' + row.join('')));
+                console.log(chalk.gray('  ' + points.map(p => (p.x % 5 === 0 ? String(p.x).padStart(2, ' ') : '  ')).join('')));
+              }
+            } catch {}
+            await saveHistory({ type: 'optimize', input: query, result, date: new Date().toISOString() });
+          }
         } catch (e) {
           console.log(chalk.red('Eroare la optimizare:'), e.message);
         }
         break;
       case 'convert':
         console.log(chalk.yellow('Exemplu: 100 cm to m → 1 m'));
-        const { conv } = await inquirer.prompt({ type: 'input', name: 'conv', message: 'Introduceți conversia (ex: 100 cm to m):' });
+        // Validare input conversie (ex: 100 cm to m)
+        const { conv } = await inquirer.prompt({
+          type: 'input',
+          name: 'conv',
+          message: 'Introduceți conversia (ex: 100 cm to m):',
+          validate: input => {
+            if (!input.trim()) return 'Conversia nu poate fi goală!';
+            if (!/^\d+\s*[a-zA-Z]+\s+to\s+[a-zA-Z]+$/.test(input.trim())) return 'Format invalid! ex: 100 cm to m';
+            return true;
+          },
+          suffix: chalk.gray('  ex: 100 cm to m, 5 kg to lb')
+        });
         try {
           const result = convert(conv);
-          console.log(chalk.green('Conversie:'), result);
-          await saveHistory({ type: 'convert', input: conv, result, date: new Date().toISOString() });
+          if (result.error) {
+            console.log(chalk.red('Eroare la conversie:'), result.error);
+          } else {
+            console.log(chalk.green('Conversie:'), result);
+            await saveHistory({ type: 'convert', input: conv, result, date: new Date().toISOString() });
+          }
         } catch (e) {
           console.log(chalk.red('Eroare la conversie:'), e.message);
         }
@@ -164,9 +257,11 @@ async function mainMenu() {
         console.log(showHelp());
         break;
     }
+    // Dacă a fost acțiune din CLI, ieși după execuție (nu intra în buclă meniu)
+    if (command) break;
     console.log('');
   }
-  }
+}
 
 async function saveHistory(entry) {
   try {

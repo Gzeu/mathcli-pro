@@ -1,6 +1,8 @@
 
+
 # MathCLI Pro
 
+[![Build Status](https://github.com/gzeu/mathcli-pro/actions/workflows/ci.yml/badge.svg)](https://github.com/gzeu/mathcli-pro/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/mathcli-pro.svg)](https://www.npmjs.com/package/mathcli-pro)
 [![GitHub stars](https://img.shields.io/github/stars/gzeu/mathcli-pro.svg?style=social)](https://github.com/gzeu/mathcli-pro)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -131,6 +133,30 @@ node index.js fetch-currency EUR frankfurter.app
 
 # Script automation
 node index.js run-script script.txt
+
+
+# Optimizare matematică cu grafic ASCII
+```
+$ node index.js optimize "minimize x^2+3x-5"
+=== Rezultat Optimizare ===
+ minimize x^2+3x-5
+ Punct extrem: x = -1.5, y = -7.25
+Puncte critice (x, y):
+  x = -1.5, y = -7.25 <extremum>
+  x = -1000, y = 996995
+  x = 1000, y = 1002995
+Grafic ASCII (x ∈ [-10,10]):
+•
+•
+•
+ ••
+  ••
+   ••
+    ••
+     ••      ••
+       ••••••
+  -10        -5         0         5        10
+```
 
 # CLI chart
 node index.js plot-chart 3 1 4 1 5 9 2 6
