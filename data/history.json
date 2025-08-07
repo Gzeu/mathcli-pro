@@ -460,5 +460,263 @@
       5
     ],
     "date": "2025-08-07T00:20:06.580Z"
+  },
+  {
+    "type": "plot-chart",
+    "input": "1,2,3,4,5",
+    "result": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "date": "2025-08-07T00:57:42.092Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m³ to km3",
+    "result": "1000 m³ = 0.000001 km3",
+    "date": "2025-08-07T00:58:00.990Z"
+  },
+  {
+    "type": "fetch-currency",
+    "input": {
+      "currency": "usd",
+      "apiIdx": 0
+    },
+    "result": {
+      "error": "No rates found or invalid response from API."
+    },
+    "date": "2025-08-07T01:08:34.815Z"
+  },
+  {
+    "type": "fetch-currency",
+    "input": {
+      "currency": "usd",
+      "apiIdx": 1
+    },
+    "result": {
+      "rates": {
+        "AUD": 1.5377,
+        "BGN": 1.6855,
+        "BRL": 5.5063,
+        "CAD": 1.376,
+        "CHF": 0.80739,
+        "CNY": 7.1857,
+        "CZK": 21.17,
+        "DKK": 6.4308,
+        "EUR": 0.86177,
+        "GBP": 0.75121,
+        "HKD": 7.8499,
+        "HUF": 343.23,
+        "IDR": 16358,
+        "ILS": 3.4509,
+        "INR": 87.72,
+        "ISK": 123.06,
+        "JPY": 147.55,
+        "KRW": 1388.32,
+        "MXN": 18.7349,
+        "MYR": 4.23,
+        "NOK": 10.2133,
+        "NZD": 1.6862,
+        "PHP": 57.485,
+        "PLN": 3.6867,
+        "RON": 4.3742,
+        "SEK": 9.648,
+        "SGD": 1.2865,
+        "THB": 32.38,
+        "TRY": 40.66,
+        "ZAR": 17.8137
+      },
+      "api": "frankfurter.app"
+    },
+    "date": "2025-08-07T01:08:58.691Z"
+  },
+  {
+    "type": "plot-chart",
+    "input": "1-8-7-",
+    "result": [],
+    "date": "2025-08-07T01:19:44.444Z"
+  },
+  {
+    "type": "plot-chart",
+    "input": "",
+    "result": [
+      0
+    ],
+    "date": "2025-08-07T01:34:26.802Z"
+  },
+  {
+    "type": "calculate",
+    "input": "88:88=",
+    "error": "Invalid left hand side of assignment operator = (char 6)",
+    "date": "2025-08-07T01:52:09.881Z"
+  },
+  {
+    "type": "calculate",
+    "input": "88:88",
+    "result": {
+      "mathjs": "DenseMatrix",
+      "data": [
+        88
+      ],
+      "size": [
+        1
+      ]
+    },
+    "date": "2025-08-07T01:52:22.024Z"
+  },
+  {
+    "type": "plot-chart",
+    "input": "10 20 30 40 50",
+    "result": [],
+    "date": "2025-08-07T02:05:31.439Z"
+  },
+  {
+    "type": "calculate",
+    "input": "4-5",
+    "result": -1,
+    "date": "2025-08-07T02:05:58.449Z"
+  },
+  {
+    "type": "calculate",
+    "input": "2+2*5",
+    "result": 12,
+    "date": "2025-08-07T02:07:30.201Z"
+  },
+  {
+    "type": "convert",
+    "input": "100 cm to m",
+    "result": "100 cm = 1 m",
+    "date": "2025-08-07T02:07:34.588Z"
+  },
+  {
+    "type": "optimize",
+    "input": "minimize x^2+3x-5",
+    "result": "Optimization: minimize x^2+3x-5",
+    "date": "2025-08-07T02:07:43.730Z"
+  },
+  {
+    "type": "calculate-from-file",
+    "input": {
+      "file": "test.csv",
+      "op": "sum(col1)",
+      "output": "rezultat.json"
+    },
+    "result": {
+      "column": "col1",
+      "sum": 9
+    },
+    "date": "2025-08-07T02:07:54.181Z"
+  },
+  {
+    "type": "fetch-currency",
+    "input": {
+      "currency": "USD",
+      "apiIdx": 0
+    },
+    "result": {
+      "error": "No rates found or invalid response from API."
+    },
+    "date": "2025-08-07T02:08:02.425Z"
+  },
+  {
+    "type": "run-script",
+    "input": "script.txt",
+    "result": [
+      {
+        "result": 100
+      }
+    ],
+    "date": "2025-08-07T02:08:06.664Z"
+  },
+  {
+    "type": "plot-chart",
+    "input": "3,1,4,1,5,9,2,6",
+    "result": [
+      3,
+      1,
+      4,
+      1,
+      5,
+      9,
+      2,
+      6
+    ],
+    "date": "2025-08-07T02:08:11.321Z"
+  },
+  {
+    "type": "optimize",
+    "input": "x^2+3x-5",
+    "result": "Optimization: x^2+3x-5",
+    "date": "2025-08-07T02:14:30.276Z"
+  },
+  {
+    "type": "optimize",
+    "input": "",
+    "result": "Optimization: ",
+    "date": "2025-08-07T02:14:36.963Z"
+  },
+  {
+    "type": "optimize",
+    "input": "",
+    "result": "Optimization: ",
+    "date": "2025-08-07T02:14:40.082Z"
+  },
+  {
+    "type": "optimize",
+    "input": "kkkk",
+    "result": "Optimization: kkkk",
+    "date": "2025-08-07T02:14:43.634Z"
+  },
+  {
+    "type": "optimize",
+    "input": "100 cm to m",
+    "result": "Optimization: 100 cm to m",
+    "date": "2025-08-07T02:18:32.038Z"
+  },
+  {
+    "type": "fetch-currency",
+    "input": {
+      "currency": "usd",
+      "apiIdx": 1
+    },
+    "result": {
+      "rates": {
+        "AUD": 1.5377,
+        "BGN": 1.6855,
+        "BRL": 5.5063,
+        "CAD": 1.376,
+        "CHF": 0.80739,
+        "CNY": 7.1857,
+        "CZK": 21.17,
+        "DKK": 6.4308,
+        "EUR": 0.86177,
+        "GBP": 0.75121,
+        "HKD": 7.8499,
+        "HUF": 343.23,
+        "IDR": 16358,
+        "ILS": 3.4509,
+        "INR": 87.72,
+        "ISK": 123.06,
+        "JPY": 147.55,
+        "KRW": 1388.32,
+        "MXN": 18.7349,
+        "MYR": 4.23,
+        "NOK": 10.2133,
+        "NZD": 1.6862,
+        "PHP": 57.485,
+        "PLN": 3.6867,
+        "RON": 4.3742,
+        "SEK": 9.648,
+        "SGD": 1.2865,
+        "THB": 32.38,
+        "TRY": 40.66,
+        "ZAR": 17.8137
+      },
+      "api": "frankfurter.app"
+    },
+    "date": "2025-08-07T02:37:33.831Z"
   }
 ]

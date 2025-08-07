@@ -8,6 +8,8 @@ import { convert } from './commands/convert.js';
 import { showHistory as showHistoryModule } from './commands/history.js';
 import fs from 'fs';
 const HISTORY_FILE = './data/history.json';
+
+// ...existing code...
 import { optimize } from './commands/optimize.js';
 import { fetchCurrency } from './commands/fetchCurrency.js';
 import { plotChart } from './commands/plotChart.js';
@@ -24,222 +26,147 @@ async function mainMenu() {
     )
   );
   console.log(chalk.gray('Advanced CLI Calculator | Type "help" for commands\n'));
-  const choices = [
-    { name: 'Calculate expression', value: 'calculate' },
-    { name: 'Convert units', value: 'convert' },
-    { name: 'History', value: 'history' },
-    { name: 'Optimize math', value: 'optimize' },
-    { name: 'Calculate from file', value: 'calculate-from-file' },
-    { name: 'Fetch currency rates', value: 'fetch-currency' },
-    { name: 'Run script file', value: 'run-script' },
-    { name: 'Plot chart', value: 'plot-chart' },
-    { name: 'Help', value: 'help' },
-    { name: 'Exit', value: 'exit' }
+  const categories = [
+    new inquirer.Separator(chalk.cyan('=== Calcul & Optimizare ===')),
+    { name: '🧮 Calculate expression   (ex: 2+2*5 → 12)', value: 'calculate' },
+    { name: '📈 Optimize math         (ex: minimize x^2+3x-5)', value: 'optimize' },
+    new inquirer.Separator(chalk.cyan('=== Conversii & Batch ===')),
+    { name: '🔄 Convert units         (ex: 100 cm to m → 1 m)', value: 'convert' },
+    { name: '🗂️  Calculate from file   (ex: test.csv, sum(col1))', value: 'calculate-from-file' },
+    { name: '💱 Fetch currency rates  (ex: USD, exchangerate.host)', value: 'fetch-currency' },
+    new inquirer.Separator(chalk.cyan('=== Automatizare & Vizualizare ===')),
+    { name: '📜 Run script file       (ex: script.txt cu comenzi CLI)', value: 'run-script' },
+    { name: '📊 Plot chart            (ex: 3 1 4 1 5 9 2 6)', value: 'plot-chart' },
+    new inquirer.Separator(chalk.cyan('=== Utilitare ===')),
+    { name: '🕑 History               (ultimele 20 operații)', value: 'history' },
+    { name: '🆘 Help                  (comenzi, exemple, FAQ)', value: 'help' },
+    { name: '🚪 Exit', value: 'exit' }
   ];
+  // Ieșire rapidă la Ctrl+C
+  process.on('SIGINT', () => {
+    console.log(chalk.green('\nCLI închis. La revedere!'));
+    process.exit(0);
+  });
   while (true) {
     const { action } = await inquirer.prompt({
       type: 'list',
       name: 'action',
-      message: 'Select an action:',
-      choices
+      message: chalk.cyan('Alege o categorie sau funcție:'),
+      choices: categories
     });
-    if (action === 'exit') break;
-    switch (action) {
-      case 'calculate': {
-        const { expr } = await inquirer.prompt({ type: 'input', name: 'expr', message: 'Enter expression:' });
-        const { result, error } = calculate(expr);
-        if (error) console.log('Invalid expression:', error);
-        else console.log(`Result: ${result}`);
-        await saveHistory({ type: 'calculate', input: expr, result, error, date: new Date().toISOString() });
-        break;
-      }
-      case 'convert': {
-        const { query } = await inquirer.prompt({ type: 'input', name: 'query', message: 'Enter conversion query:' });
-        const { result } = convert(query);
-        console.log(result);
-        await saveHistory({ type: 'convert', input: query, result, date: new Date().toISOString() });
-        break;
-      }
-      case 'history': {
-        await showHistoryPersistent();
-        break;
-      }
-      case 'optimize': {
-        const { query } = await inquirer.prompt({ type: 'input', name: 'query', message: 'Enter optimization query:' });
-        const { result } = optimize(query);
-        console.log(result);
-        await saveHistory({ type: 'optimize', input: query, result, date: new Date().toISOString() });
-        break;
-      }
-      case 'calculate-from-file': {
-        const { file, op, output } = await inquirer.prompt([
-          { type: 'input', name: 'file', message: 'File path (.csv/.json):' },
-          { type: 'input', name: 'op', message: 'Operation (ex: sum(col1)):' },
-          { type: 'input', name: 'output', message: 'Output file (optional):' }
-        ]);
-        const res = calculateFromFile(file, op, output || null);
-        if (res && res.error) console.log(res.error);
-        else if (res) console.log(res);
-        await saveHistory({ type: 'calculate-from-file', input: { file, op, output }, result: res, date: new Date().toISOString() });
-        break;
-      }
-      case 'fetch-currency': {
-        const { currency, apiIdx } = await inquirer.prompt([
-          { type: 'input', name: 'currency', message: 'Currency code (ex: USD):' },
-          { type: 'list', name: 'apiIdx', message: 'Select API source:', choices: [ { name: 'exchangerate.host', value: 0 }, { name: 'frankfurter.app', value: 1 } ] }
-        ]);
-        const res = await fetchCurrency(currency, apiIdx);
-        if (res && res.error) console.log(res.error);
-        else if (res) {
-          console.log(`Exchange rates for ${currency} [${res.api}]:`);
-          Object.entries(res.rates).forEach(([key, value]) => {
-            console.log(`  ${key}: ${value}`);
-          });
-        }
-        await saveHistory({ type: 'fetch-currency', input: { currency, apiIdx }, result: res, date: new Date().toISOString() });
-        break;
-      }
-      case 'run-script': {
-        const { script } = await inquirer.prompt({ type: 'input', name: 'script', message: 'Script file path:' });
-        const results = await runScript(script);
-        if (Array.isArray(results)) {
-          results.forEach(r => {
-            if (r.error) console.log(r.error);
-            else console.log(r.result || r);
-          });
-        } else if (results && results.error) {
-          console.log(results.error);
-        }
-        await saveHistory({ type: 'run-script', input: script, result: results, date: new Date().toISOString() });
-        break;
-      }
-      case 'plot-chart': {
-        const { vals } = await inquirer.prompt({ type: 'input', name: 'vals', message: 'Enter numbers separated by comma:' });
-        const arr = vals.split(',').map(Number).filter(x => !isNaN(x));
-        await plotChart(arr);
-        await saveHistory({ type: 'plot-chart', input: vals, result: arr, date: new Date().toISOString() });
-        break;
-      }
-      case 'help': {
-        console.log(showHelp());
-        break;
-      }
+    if (action === 'exit') {
+      console.log(chalk.green('Goodbye!'));
+      process.exit(0);
     }
-    console.log('');
-  }
-}
-
-if (!command) {
-  mainMenu();
-} else {
-  (async () => {
-    switch (command) {
-      case 'calculate': {
-        if (!args[0]) {
-          console.log('Please provide an expression to calculate.');
-        } else {
-          const { result, error } = calculate(args[0]);
-          if (error) console.log('Invalid expression:', error);
-          else console.log(`Result: ${result}`);
-          await saveHistory({ type: 'calculate', input: args[0], result, error, date: new Date().toISOString() });
+    switch (action) {
+      case 'calculate':
+        console.log(chalk.yellow('Exemplu: 2+2*5 → 12'));
+        // Implementare directă sau apel la modulul calculate
+        const { expr } = await inquirer.prompt({ type: 'input', name: 'expr', message: 'Introduceți expresia matematică:' });
+        try {
+          const result = calculate(expr);
+          console.log(chalk.green('Rezultat:'), result);
+          await saveHistory({ type: 'calculate', input: expr, result, date: new Date().toISOString() });
+        } catch (e) {
+          console.log(chalk.red('Eroare la calcul:'), e.message);
         }
         break;
-      }
-      case 'calculate-from-file': {
-        if (!args[0] || !args[1]) {
-          console.log('Usage: node index.js calculate-from-file <file.csv|json> "sum(column)" [--output results.json|results.csv]');
-        } else {
-          let outputFile = null;
-          const outputArg = args.find(a => a.startsWith('--output'));
-          if (outputArg) {
-            const parts = outputArg.split('=');
-            if (parts.length === 2) outputFile = parts[1];
-          }
-          const res = calculateFromFile(args[0], args[1], outputFile);
-          if (res && res.error) console.log(res.error);
-          else if (res) console.log(res);
-          await saveHistory({ type: 'calculate-from-file', input: { file: args[0], op: args[1], output: outputFile }, result: res, date: new Date().toISOString() });
+      case 'optimize':
+        console.log(chalk.yellow('Exemplu: minimize x^2+3x-5'));
+        const { query } = await inquirer.prompt({ type: 'input', name: 'query', message: 'Introduceți funcția de optimizat:' });
+        try {
+          const result = optimize(query);
+          console.log(chalk.green('Optimizare:'), result);
+          await saveHistory({ type: 'optimize', input: query, result, date: new Date().toISOString() });
+        } catch (e) {
+          console.log(chalk.red('Eroare la optimizare:'), e.message);
         }
         break;
-      }
-      case 'convert': {
-        if (!args.length) {
-          console.log('Please provide a conversion query.');
-        } else {
-          const query = args.join(' ');
-          const { result, error } = convert(query);
-          if (error) console.log('Error:', error);
-          else console.log(result);
-          await saveHistory({ type: 'convert', input: query, result: result || error, error, date: new Date().toISOString() });
+      case 'convert':
+        console.log(chalk.yellow('Exemplu: 100 cm to m → 1 m'));
+        const { conv } = await inquirer.prompt({ type: 'input', name: 'conv', message: 'Introduceți conversia (ex: 100 cm to m):' });
+        try {
+          const result = convert(conv);
+          console.log(chalk.green('Conversie:'), result);
+          await saveHistory({ type: 'convert', input: conv, result, date: new Date().toISOString() });
+        } catch (e) {
+          console.log(chalk.red('Eroare la conversie:'), e.message);
         }
         break;
-      }
-      case 'history': {
-        await showHistoryPersistent();
-        break;
-      }
-      case 'optimize': {
-        if (!args[0]) {
-          console.log('Please provide an optimization query.');
-        } else {
-          const { result } = optimize(args[0]);
-          console.log(result);
-          await saveHistory({ type: 'optimize', input: args[0], result, date: new Date().toISOString() });
+      case 'calculate-from-file':
+        console.log(chalk.yellow('Exemplu: test.csv, sum(col1)'));
+        const { file, op, output } = await inquirer.prompt([
+          { type: 'input', name: 'file', message: 'Cale fișier (.csv/.json):' },
+          { type: 'input', name: 'op', message: 'Operație (ex: sum(col1)):' },
+          { type: 'input', name: 'output', message: 'Fișier output (opțional):' }
+        ]);
+        try {
+          const result = calculateFromFile(file, op, output || null);
+          console.log(chalk.green('Rezultat batch:'), result);
+          await saveHistory({ type: 'calculate-from-file', input: { file, op, output }, result, date: new Date().toISOString() });
+        } catch (e) {
+          console.log(chalk.red('Eroare batch:'), e.message);
         }
         break;
-      }
-      case 'fetch-currency': {
-        let currency = args[0];
-        let apiIdx = 0;
-        if (args[1]) {
-          apiIdx = args[1] === 'frankfurter.app' ? 1 : 0;
-        }
-        if (!currency) {
-          console.log('Usage: node index.js fetch-currency USD [exchangerate.host|frankfurter.app]');
-        } else {
-          const res = await fetchCurrency(currency, apiIdx);
-          if (res && res.error) console.log(res.error);
-          else if (res) {
-            console.log(`Exchange rates for ${currency} [${res.api}]:`);
-            Object.entries(res.rates).forEach(([key, value]) => {
+      case 'fetch-currency':
+        console.log(chalk.yellow('Exemplu: USD, exchangerate.host'));
+        const { currency, apiIdx } = await inquirer.prompt([
+          { type: 'input', name: 'currency', message: 'Cod valută (ex: USD):' },
+          { type: 'list', name: 'apiIdx', message: 'Alege sursa API:', choices: [ { name: 'exchangerate.host', value: 0 }, { name: 'frankfurter.app', value: 1 } ] }
+        ]);
+        try {
+          const result = await fetchCurrency(currency, apiIdx);
+          if (result && result.error) console.log(chalk.red(result.error));
+          else if (result) {
+            console.log(chalk.green(`Cursuri pentru ${currency} [${result.api}]:`));
+            Object.entries(result.rates).forEach(([key, value]) => {
               console.log(`  ${key}: ${value}`);
             });
           }
-          await saveHistory({ type: 'fetch-currency', input: { currency, apiIdx }, result: res, date: new Date().toISOString() });
+          await saveHistory({ type: 'fetch-currency', input: { currency, apiIdx }, result, date: new Date().toISOString() });
+        } catch (e) {
+          console.log(chalk.red('Eroare curs valutar:'), e.message);
         }
         break;
-      }
-      case 'run-script': {
-        if (!args[0]) {
-          console.log('Usage: node index.js run-script script.txt');
-        } else {
-          const results = await runScript(args[0]);
+      case 'run-script':
+        console.log(chalk.yellow('Exemplu: script.txt cu comenzi CLI'));
+        const { script } = await inquirer.prompt({ type: 'input', name: 'script', message: 'Cale fișier script:' });
+        try {
+          const results = await runScript(script);
           if (Array.isArray(results)) {
             results.forEach(r => {
-              if (r.error) console.log(r.error);
-              else console.log(r.result || r);
+              if (r.error) console.log(chalk.red(r.error));
+              else console.log(chalk.green(r.result || r));
             });
           } else if (results && results.error) {
-            console.log(results.error);
+            console.log(chalk.red(results.error));
           }
-          await saveHistory({ type: 'run-script', input: args[0], result: results, date: new Date().toISOString() });
+          await saveHistory({ type: 'run-script', input: script, result: results, date: new Date().toISOString() });
+        } catch (e) {
+          console.log(chalk.red('Eroare script:'), e.message);
         }
         break;
-      }
-      case 'plot-chart': {
-        const arr = args.map(Number).filter(x => !isNaN(x));
-        plotChart(arr);
-        await saveHistory({ type: 'plot-chart', input: args.join(','), result: arr, date: new Date().toISOString() });
+      case 'plot-chart':
+        console.log(chalk.yellow('Exemplu: 3 1 4 1 5 9 2 6'));
+        const { values } = await inquirer.prompt({ type: 'input', name: 'values', message: 'Valori separate prin spațiu:' });
+        try {
+          const arr = values.split(/\s+/).map(Number).filter(x => !isNaN(x));
+          plotChart(arr);
+          await saveHistory({ type: 'plot-chart', input: values, result: arr, date: new Date().toISOString() });
+        } catch (e) {
+          console.log(chalk.red('Eroare chart:'), e.message);
+        }
         break;
-      }
+      case 'history':
+        await showHistoryPersistent();
+        break;
       case 'help':
-      default:
         console.log(showHelp());
         break;
     }
-  })();
-}
-// --- ISTORIC PERSISTENT ---
+    console.log('');
+  }
+  }
 
 async function saveHistory(entry) {
   try {
@@ -253,6 +180,7 @@ async function saveHistory(entry) {
     // fail silent
   }
 }
+
 
 async function showHistoryPersistent() {
   if (!fs.existsSync(HISTORY_FILE)) {
@@ -272,4 +200,5 @@ async function showHistoryPersistent() {
     console.log('Failed to read history:', err.message);
   }
 }
-
+// Pornește CLI-ul doar dacă fișierul este rulat direct
+mainMenu();

@@ -101,41 +101,97 @@ For more details, check the documentation in commands/help-command.js or use the
 
 ---
 
+
 ## 📋 Example Commands for Quick Testing
 
 ```
-# Calcul matematic avansat
-node index.js calculate "2+2*5"
-node index.js calculate "sin(pi/2) + sqrt(16)"
+# Math expression (with output)
+node index.js calculate "2+2*5"                  # Result: 12
+node index.js calculate "sin(pi/2) + sqrt(16)"   # Result: 5
+node index.js calculate "log(100, 10)"           # Result: 2
+node index.js calculate "pow(2,8)"               # Result: 256
 
+# Real unit conversions
+node index.js convert "100 cm to m"               # 100 cm = 1 m
+node index.js convert "5 kg to lb"                # 5 kg = 11.023122100918888 lb
+node index.js convert "32 C to F"                 # 32 C = 89.6 F
+node index.js convert "100 m3 to l"               # 100 m3 = 100000 l
+node index.js convert "60 km/h to m/s"            # 60 km/h = 16.666666666666668 m/s
+node index.js convert "1000 m^3 to l"             # 1000 m^3 = 1000000 l
+node index.js convert "1000 ml to l"              # 1000 ml = 1 l
+node index.js convert "1 mi to km"                # 1 mi = 1.609344 km
 
-# Conversii reale de unități
-node index.js convert "100 cm to m"         # 100 cm = 1 m
-node index.js convert "5 kg to lb"          # 5 kg = 11.023122100918888 lb
-node index.js convert "32 C to F"           # 32 C = 89.6 F
-node index.js convert "100 m3 to l"         # 100 m3 = 100000 l
-node index.js convert "60 km/h to m/s"      # 60 km/h = 16.666666666666668 m/s
-node index.js convert "1000 m^3 to l"       # 1000 m^3 = 1000000 l
-
-# Calcul din fișier CSV/JSON și export rezultat
+# Batch calculation from file
 node index.js calculate-from-file test.csv "sum(col1)" --output=rezultat.json
+node index.js calculate-from-file data.json "avg(col2)"
 
-# Fetch curs valutar din surse diferite
+# Currency rates
 node index.js fetch-currency USD exchangerate.host
 node index.js fetch-currency EUR frankfurter.app
 
-# Rulare script cu comenzi multiple
+# Script automation
 node index.js run-script script.txt
 
-# Plotare grafic rapid în terminal
+# CLI chart
 node index.js plot-chart 3 1 4 1 5 9 2 6
+node index.js plot-chart 10 20 30 40 50
 
-# Testare automată API-uri valutare
-node index.js test-api
+# Show history
+node index.js history
 
-# Ajutor și exemple
+# Help
 node index.js help
 ```
+
+---
+
+## 🆘 Full CLI Help & Menu
+
+### Main Menu Options
+
+- Calculate expression: Evaluate advanced math expressions (mathjs)
+- Convert units: Real unit conversions (length, mass, volume, temp, speed, etc.)
+- History: Show persistent calculation history (last 20 operations)
+- Optimize math: Math optimization (placeholder)
+- Calculate from file: Batch calculations from CSV/JSON, export result
+- Fetch currency rates: Get currency rates from multiple APIs
+- Run script file: Run multiple commands from a script file
+- Plot chart: Plot a bar chart in the terminal
+- Help: Show help and usage examples
+- Exit: Close the CLI
+
+### Command Syntax & Examples
+
+**Calculate:**
+  node index.js calculate "2+2*5"
+  node index.js calculate "sin(pi/2) + sqrt(16)"
+
+**Convert:**
+  node index.js convert "100 cm to m"
+  node index.js convert "60 km/h to m/s"
+
+**History:**
+  node index.js history
+
+**Optimize:**
+  node index.js optimize "minimize x^2+3x-5"
+
+**Calculate from file:**
+  node index.js calculate-from-file data.csv "sum(col1)" --output=results.json
+
+**Fetch currency:**
+  node index.js fetch-currency USD exchangerate.host
+
+**Run script:**
+  node index.js run-script script.txt
+
+**Plot chart:**
+  node index.js plot-chart 1 2 3 4 5 6
+
+**Help:**
+  node index.js help
+
+---
 
 ---
 
