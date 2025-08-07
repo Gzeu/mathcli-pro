@@ -1,6 +1,6 @@
 {
   "name": "mathcli-pro",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "Calculator Matematic CLI Avansat",
   "main": "index.js",
   "bin": {
