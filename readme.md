@@ -1,8 +1,3 @@
-
-
-
-
-
 # MathCLI Pro v4.1.5
 
 
@@ -123,7 +118,6 @@ node index.js help
 ├── bin/               # npm bin entry (mathcli-pro)
 ├── index.js           # CLI entry point
 ├── commands/          # CLI commands (calculate, convert, etc.)
-├── utils/             # Utility modules
 ├── data/              # Persistent data (history, etc.)
 ├── config/            # Global config
 └── tests/             # Unit/integration tests
