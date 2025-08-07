@@ -3,12 +3,12 @@
 
 
 
-# MathCLI Pro v4.1.4
+# MathCLI Pro v4.1.5
 
 
 [![Build Status](https://github.com/gzeu/mathcli-pro/actions/workflows/ci.yml/badge.svg)](https://github.com/gzeu/mathcli-pro/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/mathcli-pro.svg)](https://www.npmjs.com/package/mathcli-pro)
-[![Version](https://img.shields.io/badge/version-4.1.4-blue.svg)](https://www.npmjs.com/package/mathcli-pro)
+[![Version](https://img.shields.io/badge/version-4.1.5-blue.svg)](https://www.npmjs.com/package/mathcli-pro)
 [![GitHub stars](https://img.shields.io/github/stars/gzeu/mathcli-pro.svg?style=social)](https://github.com/gzeu/mathcli-pro)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
