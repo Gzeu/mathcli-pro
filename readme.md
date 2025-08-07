@@ -114,40 +114,6 @@ node index.js help
 ---
 
 
-## Project Structure
-```
-├── package.json       # npm config & dependencies
-├── bin/               # npm bin entry (mathcli-pro)
-├── index.js           # CLI entry point
-├── commands/          # CLI commands (calculate, convert, etc.)
-├── utils/             # Utility modules
-├── data/              # Persistent data (history, etc.)
-├── config/            # Global config
-└── tests/             # Unit/integration tests
-```
-
----
-
-## Contributing
-Contributions and issues are welcome!
-1. Fork the repo
-2. Create a branch (`feature/your-feature`)
-3. Commit your changes
-4. Open a Pull Request
-5. Discuss and review
-
----
-
-## License
-MIT — see [LICENSE](LICENSE)
-
----
-
-## Contact & Support
-- [GitHub Issues](https://github.com/gzeu/mathcli-pro/issues)
-- Email: pricopgeorge@gmail.com
-
----
 
 
 ## Project Structure
