@@ -3,26 +3,6 @@
 
 export const catalog = [
   {
-    name: 'ASCII Art Trees',
-    command: 'tree-of-life',
-    description: 'Displays a stylized Tree of Life in the terminal using ASCII characters.',
-    example: 'node index.js tree-of-life',
-    extensible: true,
-    category: 'visualization',
-    notes: 'You can add other types of trees or fractals.',
-    exampleOutput: `
-         🌳
-        /|\\
-       /*|O\\
-      /*/|\\*\\
-     /X/O|*\\X\\
-    /*/X/|\\O\\*\\
-   /O/*/X|*\\O\\X\\
-         |
-        / \\
-    `
-  },
-  {
     name: 'CLI Chart',
     command: 'plot-chart',
     description: 'Draws a bar chart (histogram) directly in the terminal.',
