@@ -8,21 +8,78 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > **Advanced, modular, and extensible CLI calculator for developers, engineers, and power users.**
-
 ---
-
 ## Features
 
 - 📐 Advanced math expression evaluation (mathjs)
-- 🔄 Real unit conversions (length, mass, volume, temperature, speed, etc.)
-- 🧮 Batch calculations from CSV/JSON
 
 ---
 
-## Project Structure
+## 🎨 Vizualizări CLI & Exemple Atractive
 
+### Optimizare matematică cu grafic ASCII
+```bash
+$ node index.js optimize "minimize x^2+3x-5"
+=== Rezultat Optimizare ===
+ minimize x^2+3x-5
+ Punct extrem: x = -1.5, y = -7.25
+Puncte critice (x, y):
+  x = -1.5, y = -7.25 <extremum>
+  x = -1000, y = 996995
+  x = 1000, y = 1002995
+Grafic ASCII (x ∈ [-10,10]):
+•
+•
+•
+ ••
+  ••
+   ••
+    ••
+     ••      ••
+       ••••••
+  -10        -5         0         5        10
 ```
-mathcli-pro/
+
+### CLI chart cu output vizual
+```bash
+$ node index.js plot-chart 3 1 4 1 5 9 2 6
+Grafic:
+▇▁▆▁▇▃▁▅
+```
+
+### Tree of Life (ASCII Art)
+```bash
+$ node index.js tree-of-life
+         🌳
+        /|\
+       /*|O\
+      /*/|\*\
+     /X/O|*\X\
+    /*/X/|\O\*\
+   /O/*/X|*\O\X\
+         |
+        / \
+```
+
+---
+
+## 📅 Roadmap Profesional (v4.1.3)
+
+| Task                                      | Status   | Version |
+|--------------------------------------------|----------|---------|
+| Persistent calculation history             |   ✔️     | 4.1.3   |
+| Real unit conversions                      |   ✔️     | 4.1.3   |
+| Math optimization (min/max, grafic CLI)    |   ✔️     | 4.1.3   |
+| CLI output profesional cu grafice ASCII    |   ✔️     | 4.1.3   |
+| Input validation & feedback avansat        |   ✔️     | 4.1.3   |
+| Testare automată & CI                      |   ✔️     | 4.1.3   |
+| Import/export (Excel, batch)               |   ⏳     | next    |
+| User-defined functions (plugins/scripts)   |   ⏳     | next    |
+| Advanced history/charts (export, CLI/img)  |   ⏳     | next    |
+| Batch mode & automation                    |   ⏳     | next    |
+| Advanced currency calculator               |   ⏳     | next    |
+| Interactive documentation & real examples  |   ⏳     | next    |
+
 ├── package.json          # npm configurations, scripts, and dependencies
 ├── bin/                  # npm bin entry point (mathcli-pro)
 ├── index.js              # CLI entry point (modular)
@@ -168,20 +225,38 @@ Grafic:
 ▇▁▆▁▇▃▁▅
 ```
 
-## Tree of Life (ASCII Art)
-```bash
-$ node index.js plot-chart 1 2 3 4 5 4 3 2 1
-Grafic:
-    ▇
-   ▇▇▇
-  ▇▇▇▇▇
- ▇▇▇▇▇▇▇
-▇▇▇▇▇▇▇▇▇
- ▇▇▇▇▇▇▇
-  ▇▇▇▇▇
-   ▇▇▇
-    ▇
-```
+  __  __       _   _      ____ _     ___   ____
+ |  \/  | __ _| |_| |__  / ___| |   |_ _| |  _ \ _ __ ___  
+ | |\/| |/ _` | __| '_ \| |   | |    | |  | |_) | '__/ _ \ 
+ | |  | | (_| | |_| | | | |___| |___ | |  |  __/| | | (_) |
+ |_|  |_|\__,_|\__|_| |_|\____|_____|___| |_|   |_|  \___/ 
+
+Advanced CLI Calculator | Type "help" for commands
+
+Exemplu: 3 1 4 1 5 9 2 6
+✔ Valori separate prin spațiu: 1 2 3 4 5 4 3 2 1
+
+          |
+          |
+          |
+          |
+          |
+     5    |                             
+          |                             
+          |                             
+          |                             
+ Value    |                             
+          |                             
+          |                             
+          |                                 
+          |                                 
+          |                                 
+          |                                 
+          |                                 
+          |                                 
+          |                                 
+        0 |                                 
+          ------------------------------------------------------------   
 
 # CLI chart
 node index.js plot-chart 3 1 4 1 5 9 2 6
