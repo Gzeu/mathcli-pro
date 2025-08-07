@@ -16,7 +16,7 @@ import { plotChart } from './commands/plotChart.js';
 import { runScript } from './commands/runScript.js';
 
 import { showHelp } from './commands/help.js';
-import * as treeOfLife from './commands/tree-of-life.js';
+
 import { catalog } from './catalog.js';
 
 
@@ -67,6 +67,7 @@ async function mainMenu() {
     // Dacă există argument CLI, folosește-l ca acțiune (inclusiv alias)
     if (command) {
       action = ALIASES[command] || command;
+
     } else {
       const resp = await inquirer.prompt({
         type: 'list',
@@ -129,16 +130,7 @@ async function mainMenu() {
           console.log(chalk.red('Eroare la calcul:'), e.message);
         }
         break;
-      case 'tree-of-life':
-        if (typeof treeOfLife === 'function') {
-          treeOfLife();
-        } else if (treeOfLife && typeof treeOfLife.default === 'function') {
-          treeOfLife.default();
-        } else if (treeOfLife && typeof treeOfLife.treeOfLife === 'function') {
-          treeOfLife.treeOfLife();
-        }
-        await saveHistory({ type: 'tree-of-life', input: null, result: 'Tree of Life displayed', date: new Date().toISOString() });
-        break;
+
       case 'optimize':
         console.log(chalk.yellow('Exemplu: minimize x^2+3x-5'));
         const { query } = await inquirer.prompt({ type: 'input', name: 'query', message: 'Introduceți funcția de optimizat:' });
@@ -329,6 +321,9 @@ async function saveHistory(entry) {
 
 
 async function showHistoryPersistent() {
+  const args = process.argv.slice(3);
+  const exportArg = args.find(a => a.startsWith('--export='));
+  const exportType = exportArg ? exportArg.split('=')[1] : null;
   if (!fs.existsSync(HISTORY_FILE)) {
     console.log('No history found.');
     return;
@@ -337,6 +332,25 @@ async function showHistoryPersistent() {
     const arr = JSON.parse(fs.readFileSync(HISTORY_FILE, 'utf8'));
     if (!arr.length) {
       console.log('No history found.');
+      return;
+    }
+    if (exportType === 'csv') {
+      const csv = ['date,type,input,result,error'];
+      arr.forEach(h => {
+        csv.push([
+          h.date,
+          h.type,
+          JSON.stringify(h.input).replace(/"/g, '""'),
+          JSON.stringify(h.result).replace(/"/g, '""'),
+          h.error ? h.error.replace(/"/g, '""') : ''
+        ].map(v => '"'+v+'"').join(','));
+      });
+      fs.writeFileSync('history-export.csv', csv.join('\n'));
+      console.log('History exported to history-export.csv');
+      return;
+    } else if (exportType === 'json') {
+      fs.writeFileSync('history-export.json', JSON.stringify(arr, null, 2));
+      console.log('History exported to history-export.json');
       return;
     }
     arr.slice(-20).forEach((h, i) => {
