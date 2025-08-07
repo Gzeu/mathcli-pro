@@ -14,7 +14,10 @@ import { optimize } from './commands/optimize.js';
 import { fetchCurrency } from './commands/fetchCurrency.js';
 import { plotChart } from './commands/plotChart.js';
 import { runScript } from './commands/runScript.js';
+
 import { showHelp } from './commands/help.js';
+import * as treeOfLife from './commands/tree-of-life.js';
+import { catalog } from './catalog.js';
 
 
 // Alias-uri CLI pentru acțiuni rapide
@@ -51,7 +54,8 @@ async function mainMenu() {
     new inquirer.Separator(chalk.cyan('=== Utilitare ===')),
     { name: '🕑 History               (ultimele 20 operații)', value: 'history' },
     { name: '🆘 Help                  (comenzi, exemple, FAQ)', value: 'help' },
-    { name: '🚪 Exit', value: 'exit' }
+    { name: '� Catalog vizualizări & extensii', value: 'catalog' },
+    { name: '�🚪 Exit', value: 'exit' }
   ];
   // Ieșire rapidă la Ctrl+C
   process.on('SIGINT', () => {
@@ -77,6 +81,28 @@ async function mainMenu() {
       process.exit(0);
     }
     switch (action) {
+      case 'catalog':
+        // Grupare pe categorii
+        const grouped = {};
+        for (const item of catalog) {
+          if (!grouped[item.category]) grouped[item.category] = [];
+          grouped[item.category].push(item);
+        }
+        for (const [cat, items] of Object.entries(grouped)) {
+          console.log(chalk.cyan.bold(`\n=== ${cat.toUpperCase()} ===`));
+          for (const ext of items) {
+            console.log(chalk.yellowBright(`\n${ext.name}`));
+            console.log(chalk.gray(`Comandă: ${ext.command}`));
+            console.log(chalk.white(ext.description));
+            console.log(chalk.green('Exemplu: ') + ext.example);
+            if (ext.exampleOutput) {
+              console.log(chalk.magenta('Output:'));
+              console.log(ext.exampleOutput);
+            }
+            if (ext.notes) console.log(chalk.blue('Extensibil: ') + ext.notes);
+          }
+        }
+        break;
       case 'calculate':
         console.log(chalk.yellow('Exemplu: 2+2*5 → 12'));
         // Validare expresie matematică simplă (doar caractere permise)
@@ -102,6 +128,16 @@ async function mainMenu() {
         } catch (e) {
           console.log(chalk.red('Eroare la calcul:'), e.message);
         }
+        break;
+      case 'tree-of-life':
+        if (typeof treeOfLife === 'function') {
+          treeOfLife();
+        } else if (treeOfLife && typeof treeOfLife.default === 'function') {
+          treeOfLife.default();
+        } else if (treeOfLife && typeof treeOfLife.treeOfLife === 'function') {
+          treeOfLife.treeOfLife();
+        }
+        await saveHistory({ type: 'tree-of-life', input: null, result: 'Tree of Life displayed', date: new Date().toISOString() });
         break;
       case 'optimize':
         console.log(chalk.yellow('Exemplu: minimize x^2+3x-5'));
@@ -202,23 +238,38 @@ async function mainMenu() {
         }
         break;
       case 'fetch-currency':
-        console.log(chalk.yellow('Exemplu: USD, exchangerate.host'));
-        const { currency, apiIdx } = await inquirer.prompt([
-          { type: 'input', name: 'currency', message: 'Cod valută (ex: USD):' },
-          { type: 'list', name: 'apiIdx', message: 'Alege sursa API:', choices: [ { name: 'exchangerate.host', value: 0 }, { name: 'frankfurter.app', value: 1 } ] }
+        console.log(chalk.yellow('Example: USD, exchangerate.host or BTC, coingecko'));
+        // Get all unique APIs from catalog entries with command 'fetch-currency'
+        const apiSet = new Set();
+        for (const entry of catalog) {
+          if (entry.command === 'fetch-currency' && Array.isArray(entry.supportedApis)) {
+            entry.supportedApis.forEach(api => apiSet.add(api));
+          }
+        }
+        const apiChoices = Array.from(apiSet).map(api => ({ name: api, value: api }));
+        const { currency, api } = await inquirer.prompt([
+          { type: 'input', name: 'currency', message: 'Currency code (ex: USD, BTC):' },
+          { type: 'list', name: 'api', message: 'Select API source:', choices: apiChoices }
         ]);
         try {
-          const result = await fetchCurrency(currency, apiIdx);
-          if (result && result.error) console.log(chalk.red(result.error));
-          else if (result) {
-            console.log(chalk.green(`Cursuri pentru ${currency} [${result.api}]:`));
+          const result = await fetchCurrency(currency, api);
+          if (result && result.error) {
+            if (api === 'coingecko') {
+              console.log(chalk.red('Crypto not found or unsupported by CoinGecko. Try BTC, ETH, SOL, etc.'));
+            } else if (api === 'exchangerate.host' || api === 'frankfurter.app') {
+              console.log(chalk.red('Currency not found or unsupported by selected API. Try USD, EUR, RON, etc.'));
+            } else {
+              console.log(chalk.red(result.error));
+            }
+          } else if (result) {
+            console.log(chalk.green(`Rates for ${currency} [${result.api}]:`));
             Object.entries(result.rates).forEach(([key, value]) => {
               console.log(`  ${key}: ${value}`);
             });
           }
-          await saveHistory({ type: 'fetch-currency', input: { currency, apiIdx }, result, date: new Date().toISOString() });
+          await saveHistory({ type: 'fetch-currency', input: { currency, api }, result, date: new Date().toISOString() });
         } catch (e) {
-          console.log(chalk.red('Eroare curs valutar:'), e.message);
+          console.log(chalk.red('Currency fetch error:'), e.message);
         }
         break;
       case 'run-script':
