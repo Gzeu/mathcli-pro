@@ -1,5 +1,7 @@
 
 import inquirer from 'inquirer';
+import chalk from 'chalk';
+import figlet from 'figlet';
 import { calculate } from './commands/calculate.js';
 import { calculateFromFile } from './commands/calculateFromFile.js';
 import { convert } from './commands/convert.js';
@@ -15,6 +17,13 @@ import { showHelp } from './commands/help.js';
 const [,, command, ...args] = process.argv;
 
 async function mainMenu() {
+  // Banner ASCII art la pornire
+  console.log(
+    chalk.cyan(
+      figlet.textSync('MathCLI Pro', { horizontalLayout: 'default', font: 'Standard' })
+    )
+  );
+  console.log(chalk.gray('Advanced CLI Calculator | Type "help" for commands\n'));
   const choices = [
     { name: 'Calculate expression', value: 'calculate' },
     { name: 'Convert units', value: 'convert' },
