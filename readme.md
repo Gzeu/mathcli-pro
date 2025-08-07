@@ -60,18 +60,20 @@ Contributions, issues and feature requests are welcome!
 
 ---
 
-## Roadmap
+
+## Roadmap (v4.1.2)
 
 - [x] Persistent calculation history (data/history.json)
 - [x] Real unit conversions (convert-units)
-- [ ] Math optimization (min/max with mathjs)
+- [x] Math optimization (min/max with mathjs, output grafic CLI)
+- [x] CLI output profesional cu grafice ASCII (optimize, plot-chart)
+- [x] Input validation & feedback avansat
+- [x] Testare automată & CI (Jest, GitHub Actions)
 - [ ] Import/export (Excel, Google Sheets, batch)
 - [ ] User-defined functions (plugins/scripts)
 - [ ] Advanced history/charts (export, filter, CLI/image)
-- [ ] Input validation & feedback
 - [ ] Batch mode & automation
 - [ ] Advanced currency calculator (multi-API, alerts)
-- [ ] Automated testing & coverage
 - [ ] Interactive documentation & real examples
 
 ---
@@ -135,8 +137,9 @@ node index.js fetch-currency EUR frankfurter.app
 node index.js run-script script.txt
 
 
-# Optimizare matematică cu grafic ASCII
-```
+
+## Optimizare matematică cu grafic ASCII
+```bash
 $ node index.js optimize "minimize x^2+3x-5"
 === Rezultat Optimizare ===
  minimize x^2+3x-5
@@ -156,6 +159,28 @@ Grafic ASCII (x ∈ [-10,10]):
      ••      ••
        ••••••
   -10        -5         0         5        10
+```
+
+## CLI chart cu output vizual
+```bash
+$ node index.js plot-chart 3 1 4 1 5 9 2 6
+Grafic:
+▇▁▆▁▇▃▁▅
+```
+
+## Tree of Life (ASCII Art)
+```bash
+$ node index.js plot-chart 1 2 3 4 5 4 3 2 1
+Grafic:
+    ▇
+   ▇▇▇
+  ▇▇▇▇▇
+ ▇▇▇▇▇▇▇
+▇▇▇▇▇▇▇▇▇
+ ▇▇▇▇▇▇▇
+  ▇▇▇▇▇
+   ▇▇▇
+    ▇
 ```
 
 # CLI chart
