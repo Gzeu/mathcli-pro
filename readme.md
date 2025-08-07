@@ -1,71 +1,26 @@
-# MathCLI Pro - Advanced Mathematical CLI Calculator
 
-MathCLI Pro is a professional command-line tool for advanced mathematical calculations, unit conversions, persistent history, performance optimizations, CLI charts, and extensibility. The project is modular, scalable, and easy to extend, ideal for developers, students, or technical users who prefer the terminal.
+# MathCLI Pro
 
-## 📦 Installation
-Requirements:
-- Node.js >= 18
-- npm
+[![npm version](https://img.shields.io/npm/v/mathcli-pro.svg)](https://www.npmjs.com/package/mathcli-pro)
+[![GitHub stars](https://img.shields.io/github/stars/gzeu/mathcli-pro.svg?style=social)](https://github.com/gzeu/mathcli-pro)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Clone the repository:
-```sh
-git clone https://github.com/gzeu/mathcli-pro.git
-cd mathcli-pro
-npm install
+> **Advanced, modular, and extensible CLI calculator for developers, engineers, and power users.**
+
+---
+
+## Features
+
+- 📐 Advanced math expression evaluation (mathjs)
+- 🔄 Real unit conversions (length, mass, volume, temperature, speed, etc.)
+- 🧮 Batch calculations from CSV/JSON
+
+---
+
+## Project Structure
+
 ```
-
-## 🚀 Usage
-Start the application with:
-```sh
-npm start
-```
-
-## CLI Functionalities
-
-| Command                | Description                                                        | Example Usage                                         |
-|-----------------------|--------------------------------------------------------------------|-------------------------------------------------------|
-| calculate             | Advanced math expression evaluation                                 | node index.js calculate "2+2*5"                       |
-| convert               | Unit conversions (placeholder)                                      | node index.js convert "100 cm to m"                   |
-| history               | Show calculation history (persistent, ultimele 20 operații)         | node index.js history                                 |
-| optimize              | Math optimization (placeholder)                                     | node index.js optimize "minimize x^2+3x-5"            |
-| calculate-from-file   | Calculate from CSV/JSON file, export result                        | node index.js calculate-from-file data.csv "sum(col1)" --output results.json |
-| fetch-currency        | Fetch currency rates from external API                              | node index.js fetch-currency USD frankfurter.app       |
-| run-script            | Run multiple commands from a script file                            | node index.js run-script script.txt                   |
-| plot-chart            | Plot a bar chart in the terminal from a list of numbers             | node index.js plot-chart 1 2 3 4 5 6                  |
-| help                  | Show help and usage examples                                        | node index.js help                                    |
-
-
-## Example script.txt
-```
-calculate 2+2*5
-fetch-currency USD
-calculate sin(pi/2)
-plot-chart 1 2 3 4 5 6
-```
-
-## Persistent History Example
-After rularea mai multor comenzi, poți vedea ultimele 20 operații cu:
-
-```sh
-node index.js history
-```
-Output exemplu:
-```
-[1] 2025-08-07T12:00:00.000Z | calculate | input: "2+2*5" | result: 12
-[2] 2025-08-07T12:01:00.000Z | convert | input: "100 cm to m" | result: "Conversion: 100 cm to m"
-[3] 2025-08-07T12:02:00.000Z | calculate-from-file | input: {"file":"test.csv","op":"sum(col1)","output":null} | result: {"column":"col1","sum":9}
-```
-
-## Plotting Charts
-You can plot a bar chart in the terminal by running:
-```sh
-node index.js plot-chart 1 2 3 4 5 6
-```
-Or interactively from the main menu.
-
-## 🗂️ Project Structure & Modularization
-
-MathCLI-Pro/
+mathcli-pro/
 ├── package.json          # npm configurations, scripts, and dependencies
 ├── bin/                  # npm bin entry point (mathcli-pro)
 ├── index.js              # CLI entry point (modular)
@@ -74,20 +29,48 @@ MathCLI-Pro/
 ├── data/                 # Persistent data (history, problems)
 ├── config/               # Global configurations
 └── tests/                # Unit and integration tests
+```
 
-### Modular CLI
-- Fiecare comandă este implementată ca modul separat în `commands/` pentru mentenanță și testare ușoară.
-- CLI-ul folosește importuri moderne ESM și poate fi extins rapid cu noi funcționalități.
+---
 
-### npm & GitHub Ready
-- Proiectul include script bin pentru instalare globală (`npm install -g mathcli-pro`).
-- Câmpurile `bin`, `author`, `repository`, `keywords` sunt completate pentru publicare npm.
-- Structura și codul sunt pregătite pentru open-source și colaborare pe GitHub.
+## Contributing
 
-### Publicare npm
-1. Rulează `npm publish` după validarea tuturor funcționalităților.
-2. Instalează global cu `npm install -g mathcli-pro` și rulează `mathcli-pro` din orice terminal.
-3. Contribuie sau raportează probleme pe [GitHub](https://github.com/gzeu/mathcli-pro).
+Contributions, issues and feature requests are welcome!
+
+1. Fork the repository
+2. Create a new branch (`feature/feature-name`)
+3. Make your changes and commit
+4. Open a Pull Request
+5. Discuss and review
+
+---
+
+## License
+
+[MIT](LICENSE)
+
+---
+
+## Contact & Support
+
+- [GitHub Issues](https://github.com/gzeu/mathcli-pro/issues)
+- Email: pricopgeorge@gmail.com
+
+---
+
+## Roadmap
+
+- [x] Persistent calculation history (data/history.json)
+- [x] Real unit conversions (convert-units)
+- [ ] Math optimization (min/max with mathjs)
+- [ ] Import/export (Excel, Google Sheets, batch)
+- [ ] User-defined functions (plugins/scripts)
+- [ ] Advanced history/charts (export, filter, CLI/image)
+- [ ] Input validation & feedback
+- [ ] Batch mode & automation
+- [ ] Advanced currency calculator (multi-API, alerts)
+- [ ] Automated testing & coverage
+- [ ] Interactive documentation & real examples
 
 ---
 
@@ -125,8 +108,14 @@ For more details, check the documentation in commands/help-command.js or use the
 node index.js calculate "2+2*5"
 node index.js calculate "sin(pi/2) + sqrt(16)"
 
-# Conversie unități (placeholder)
-node index.js convert "100 cm to m"
+
+# Conversii reale de unități
+node index.js convert "100 cm to m"         # 100 cm = 1 m
+node index.js convert "5 kg to lb"          # 5 kg = 11.023122100918888 lb
+node index.js convert "32 C to F"           # 32 C = 89.6 F
+node index.js convert "100 m3 to l"         # 100 m3 = 100000 l
+node index.js convert "60 km/h to m/s"      # 60 km/h = 16.666666666666668 m/s
+node index.js convert "1000 m^3 to l"       # 1000 m^3 = 1000000 l
 
 # Calcul din fișier CSV/JSON și export rezultat
 node index.js calculate-from-file test.csv "sum(col1)" --output=rezultat.json

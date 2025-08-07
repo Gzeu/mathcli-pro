@@ -154,12 +154,14 @@ if (!command) {
         break;
       }
       case 'convert': {
-        if (!args[0]) {
+        if (!args.length) {
           console.log('Please provide a conversion query.');
         } else {
-          const { result } = convert(args[0]);
-          console.log(result);
-          await saveHistory({ type: 'convert', input: args[0], result, date: new Date().toISOString() });
+          const query = args.join(' ');
+          const { result, error } = convert(query);
+          if (error) console.log('Error:', error);
+          else console.log(result);
+          await saveHistory({ type: 'convert', input: query, result: result || error, error, date: new Date().toISOString() });
         }
         break;
       }

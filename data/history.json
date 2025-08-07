@@ -96,5 +96,369 @@
       5
     ],
     "date": "2025-08-06T23:48:05.787Z"
+  },
+  {
+    "type": "fetch-currency",
+    "input": {
+      "currency": "EUR",
+      "apiIdx": 1
+    },
+    "result": {
+      "rates": {
+        "AUD": 1.7844,
+        "BGN": 1.9558,
+        "BRL": 6.3895,
+        "CAD": 1.5967,
+        "CHF": 0.9369,
+        "CNY": 8.3383,
+        "CZK": 24.566,
+        "DKK": 7.4623,
+        "GBP": 0.8717,
+        "HKD": 9.109,
+        "HUF": 398.28,
+        "IDR": 18982,
+        "ILS": 4.0044,
+        "INR": 101.79,
+        "ISK": 142.8,
+        "JPY": 171.22,
+        "KRW": 1611.01,
+        "MXN": 21.74,
+        "MYR": 4.9085,
+        "NOK": 11.8515,
+        "NZD": 1.9567,
+        "PHP": 66.706,
+        "PLN": 4.278,
+        "RON": 5.0758,
+        "SEK": 11.1955,
+        "SGD": 1.4928,
+        "THB": 37.574,
+        "TRY": 47.182,
+        "USD": 1.1604,
+        "ZAR": 20.671
+      },
+      "api": "frankfurter.app"
+    },
+    "date": "2025-08-06T23:53:39.154Z"
+  },
+  {
+    "type": "fetch-currency",
+    "input": {
+      "currency": "usd",
+      "apiIdx": 1
+    },
+    "result": {
+      "rates": {
+        "AUD": 1.5377,
+        "BGN": 1.6855,
+        "BRL": 5.5063,
+        "CAD": 1.376,
+        "CHF": 0.80739,
+        "CNY": 7.1857,
+        "CZK": 21.17,
+        "DKK": 6.4308,
+        "EUR": 0.86177,
+        "GBP": 0.75121,
+        "HKD": 7.8499,
+        "HUF": 343.23,
+        "IDR": 16358,
+        "ILS": 3.4509,
+        "INR": 87.72,
+        "ISK": 123.06,
+        "JPY": 147.55,
+        "KRW": 1388.32,
+        "MXN": 18.7349,
+        "MYR": 4.23,
+        "NOK": 10.2133,
+        "NZD": 1.6862,
+        "PHP": 57.485,
+        "PLN": 3.6867,
+        "RON": 4.3742,
+        "SEK": 9.648,
+        "SGD": 1.2865,
+        "THB": 32.38,
+        "TRY": 40.66,
+        "ZAR": 17.8137
+      },
+      "api": "frankfurter.app"
+    },
+    "date": "2025-08-06T23:54:03.036Z"
+  },
+  {
+    "type": "convert",
+    "input": "100 cm to m",
+    "result": "100 cm = 1 m",
+    "date": "2025-08-07T00:08:13.288Z"
+  },
+  {
+    "type": "convert",
+    "input": "5 kg to lb",
+    "result": "5 kg = 11.023122100918888 lb",
+    "date": "2025-08-07T00:08:19.052Z"
+  },
+  {
+    "type": "convert",
+    "input": "32 C to F",
+    "result": "32 C = 89.6 F",
+    "date": "2025-08-07T00:08:25.869Z"
+  },
+  {
+    "type": "convert",
+    "input": "100 m3 to l",
+    "result": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "error": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "date": "2025-08-07T00:08:32.617Z"
+  },
+  {
+    "type": "convert",
+    "input": "100 m^3 to l",
+    "result": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "error": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "date": "2025-08-07T00:08:38.920Z"
+  },
+  {
+    "type": "convert",
+    "input": "100 m3 to l",
+    "result": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "error": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "date": "2025-08-07T00:08:46.760Z"
+  },
+  {
+    "type": "convert",
+    "input": "100 m^3 to l",
+    "result": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "error": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "date": "2025-08-07T00:08:52.920Z"
+  },
+  {
+    "type": "convert",
+    "input": "100 m³ to l",
+    "result": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "error": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "date": "2025-08-07T00:08:57.949Z"
+  },
+  {
+    "type": "convert",
+    "input": "100 l to m3",
+    "result": "Conversion error: Cannot convert incompatible measures of length and volume",
+    "error": "Conversion error: Cannot convert incompatible measures of length and volume",
+    "date": "2025-08-07T00:09:06.299Z"
+  },
+  {
+    "type": "convert",
+    "input": "100 l to m^3",
+    "result": "Conversion error: Cannot convert incompatible measures of length and volume",
+    "error": "Conversion error: Cannot convert incompatible measures of length and volume",
+    "date": "2025-08-07T00:09:12.382Z"
+  },
+  {
+    "type": "convert",
+    "input": "100 l to m3",
+    "result": "Conversion error: Cannot convert incompatible measures of length and volume",
+    "error": "Conversion error: Cannot convert incompatible measures of length and volume",
+    "date": "2025-08-07T00:09:17.265Z"
+  },
+  {
+    "type": "convert",
+    "input": "100 l to ml",
+    "result": "100 l = 100000 ml",
+    "date": "2025-08-07T00:09:23.868Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 ml to l",
+    "result": "1000 ml = 1 l",
+    "date": "2025-08-07T00:09:30.283Z"
+  },
+  {
+    "type": "convert",
+    "input": "10 km to m",
+    "result": "10 km = 10000 m",
+    "date": "2025-08-07T00:09:37.456Z"
+  },
+  {
+    "type": "convert",
+    "input": "100 m to cm",
+    "result": "100 m = 10000 cm",
+    "date": "2025-08-07T00:09:42.582Z"
+  },
+  {
+    "type": "convert",
+    "input": "60 km/h to m/s",
+    "result": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "error": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "date": "2025-08-07T00:09:49.848Z"
+  },
+  {
+    "type": "convert",
+    "input": "60 kmh to ms",
+    "result": "Conversion error: Unsupported unit kmh, use one of: mm, cm, m, km, in, yd, ft-us, ft, mi, mm2, cm2, m2, ha, km2, in2, yd2, ft2, ac, mi2, mcg, mg, g, kg, mt, oz, lb, t, mm3, cm3, ml, cl, dl, l, kl, m3, km3, krm, tsk, msk, kkp, glas, kanna, tsp, Tbs, in3, fl-oz, cup, pnt, qt, gal, ft3, yd3, ea, dz, C, K, F, R, ns, mu, ms, s, min, h, d, week, month, year, b, Kb, Mb, Gb, Tb, B, KB, MB, GB, TB, ppm, ppb, ppt, ppq, m/s, km/h, m/h, knot, ft/s, min/km, s/m, min/mi, s/ft, Pa, kPa, MPa, hPa, bar, torr, psi, ksi, A, mA, kA, V, mV, kV, W, mW, kW, MW, GW, VAR, mVAR, kVAR, MVAR, GVAR, VA, mVA, kVA, MVA, GVA, Wh, mWh, kWh, MWh, GWh, J, kJ, VARh, mVARh, kVARh, MVARh, GVARh, mm3/s, cm3/s, ml/s, cl/s, dl/s, l/s, l/min, l/h, kl/s, kl/min, kl/h, m3/s, m3/min, m3/h, km3/s, tsp/s, Tbs/s, in3/s, in3/min, in3/h, fl-oz/s, fl-oz/min, fl-oz/h, cup/s, pnt/s, pnt/min, pnt/h, qt/s, gal/s, gal/min, gal/h, ft3/s, ft3/min, ft3/h, yd3/s, yd3/min, yd3/h, lx, ft-cd, mHz, Hz, kHz, MHz, GHz, THz, rpm, deg/s, rad/s, rad, deg, grad, arcmin, arcsec",
+    "error": "Conversion error: Unsupported unit kmh, use one of: mm, cm, m, km, in, yd, ft-us, ft, mi, mm2, cm2, m2, ha, km2, in2, yd2, ft2, ac, mi2, mcg, mg, g, kg, mt, oz, lb, t, mm3, cm3, ml, cl, dl, l, kl, m3, km3, krm, tsk, msk, kkp, glas, kanna, tsp, Tbs, in3, fl-oz, cup, pnt, qt, gal, ft3, yd3, ea, dz, C, K, F, R, ns, mu, ms, s, min, h, d, week, month, year, b, Kb, Mb, Gb, Tb, B, KB, MB, GB, TB, ppm, ppb, ppt, ppq, m/s, km/h, m/h, knot, ft/s, min/km, s/m, min/mi, s/ft, Pa, kPa, MPa, hPa, bar, torr, psi, ksi, A, mA, kA, V, mV, kV, W, mW, kW, MW, GW, VAR, mVAR, kVAR, MVAR, GVAR, VA, mVA, kVA, MVA, GVA, Wh, mWh, kWh, MWh, GWh, J, kJ, VARh, mVARh, kVARh, MVARh, GVARh, mm3/s, cm3/s, ml/s, cl/s, dl/s, l/s, l/min, l/h, kl/s, kl/min, kl/h, m3/s, m3/min, m3/h, km3/s, tsp/s, Tbs/s, in3/s, in3/min, in3/h, fl-oz/s, fl-oz/min, fl-oz/h, cup/s, pnt/s, pnt/min, pnt/h, qt/s, gal/s, gal/min, gal/h, ft3/s, ft3/min, ft3/h, yd3/s, yd3/min, yd3/h, lx, ft-cd, mHz, Hz, kHz, MHz, GHz, THz, rpm, deg/s, rad/s, rad, deg, grad, arcmin, arcsec",
+    "date": "2025-08-07T00:10:20.332Z"
+  },
+  {
+    "type": "convert",
+    "input": "60 km/h to m/s",
+    "result": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "error": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "date": "2025-08-07T00:10:26.398Z"
+  },
+  {
+    "type": "convert",
+    "input": "60 km/h to m/s",
+    "result": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "error": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "date": "2025-08-07T00:10:45.132Z"
+  },
+  {
+    "type": "convert",
+    "input": "60 kmh to m/s",
+    "result": "Conversion error: Unsupported unit kmh, use one of: mm, cm, m, km, in, yd, ft-us, ft, mi, mm2, cm2, m2, ha, km2, in2, yd2, ft2, ac, mi2, mcg, mg, g, kg, mt, oz, lb, t, mm3, cm3, ml, cl, dl, l, kl, m3, km3, krm, tsk, msk, kkp, glas, kanna, tsp, Tbs, in3, fl-oz, cup, pnt, qt, gal, ft3, yd3, ea, dz, C, K, F, R, ns, mu, ms, s, min, h, d, week, month, year, b, Kb, Mb, Gb, Tb, B, KB, MB, GB, TB, ppm, ppb, ppt, ppq, m/s, km/h, m/h, knot, ft/s, min/km, s/m, min/mi, s/ft, Pa, kPa, MPa, hPa, bar, torr, psi, ksi, A, mA, kA, V, mV, kV, W, mW, kW, MW, GW, VAR, mVAR, kVAR, MVAR, GVAR, VA, mVA, kVA, MVA, GVA, Wh, mWh, kWh, MWh, GWh, J, kJ, VARh, mVARh, kVARh, MVARh, GVARh, mm3/s, cm3/s, ml/s, cl/s, dl/s, l/s, l/min, l/h, kl/s, kl/min, kl/h, m3/s, m3/min, m3/h, km3/s, tsp/s, Tbs/s, in3/s, in3/min, in3/h, fl-oz/s, fl-oz/min, fl-oz/h, cup/s, pnt/s, pnt/min, pnt/h, qt/s, gal/s, gal/min, gal/h, ft3/s, ft3/min, ft3/h, yd3/s, yd3/min, yd3/h, lx, ft-cd, mHz, Hz, kHz, MHz, GHz, THz, rpm, deg/s, rad/s, rad, deg, grad, arcmin, arcsec",
+    "error": "Conversion error: Unsupported unit kmh, use one of: mm, cm, m, km, in, yd, ft-us, ft, mi, mm2, cm2, m2, ha, km2, in2, yd2, ft2, ac, mi2, mcg, mg, g, kg, mt, oz, lb, t, mm3, cm3, ml, cl, dl, l, kl, m3, km3, krm, tsk, msk, kkp, glas, kanna, tsp, Tbs, in3, fl-oz, cup, pnt, qt, gal, ft3, yd3, ea, dz, C, K, F, R, ns, mu, ms, s, min, h, d, week, month, year, b, Kb, Mb, Gb, Tb, B, KB, MB, GB, TB, ppm, ppb, ppt, ppq, m/s, km/h, m/h, knot, ft/s, min/km, s/m, min/mi, s/ft, Pa, kPa, MPa, hPa, bar, torr, psi, ksi, A, mA, kA, V, mV, kV, W, mW, kW, MW, GW, VAR, mVAR, kVAR, MVAR, GVAR, VA, mVA, kVA, MVA, GVA, Wh, mWh, kWh, MWh, GWh, J, kJ, VARh, mVARh, kVARh, MVARh, GVARh, mm3/s, cm3/s, ml/s, cl/s, dl/s, l/s, l/min, l/h, kl/s, kl/min, kl/h, m3/s, m3/min, m3/h, km3/s, tsp/s, Tbs/s, in3/s, in3/min, in3/h, fl-oz/s, fl-oz/min, fl-oz/h, cup/s, pnt/s, pnt/min, pnt/h, qt/s, gal/s, gal/min, gal/h, ft3/s, ft3/min, ft3/h, yd3/s, yd3/min, yd3/h, lx, ft-cd, mHz, Hz, kHz, MHz, GHz, THz, rpm, deg/s, rad/s, rad, deg, grad, arcmin, arcsec",
+    "date": "2025-08-07T00:10:51.833Z"
+  },
+  {
+    "type": "convert",
+    "input": "60 km/h to m/s",
+    "result": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "error": "Invalid format. Usage: convert \"<value> <from> to <to>\"",
+    "date": "2025-08-07T00:10:57.540Z"
+  },
+  {
+    "type": "convert",
+    "input": "100 m3 to l",
+    "result": "100 m3 = 100000 l",
+    "date": "2025-08-07T00:11:16.954Z"
+  },
+  {
+    "type": "convert",
+    "input": "60 km/h to m/s",
+    "result": "60 km/h = 16.666666666666668 m/s",
+    "date": "2025-08-07T00:11:23.669Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m^3 to l",
+    "result": "1000 m^3 = 1000000 l",
+    "date": "2025-08-07T00:11:28.983Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m³ to l",
+    "result": "1000 m³ = 1000000 l",
+    "date": "2025-08-07T00:11:33.818Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m³ to ml",
+    "result": "1000 m³ = 1000000000 ml",
+    "date": "2025-08-07T00:11:39.438Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m3 to ml",
+    "result": "1000 m3 = 1000000000 ml",
+    "date": "2025-08-07T00:11:46.086Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m³ to ml",
+    "result": "1000 m³ = 1000000000 ml",
+    "date": "2025-08-07T00:11:51.962Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m^3 to ml",
+    "result": "1000 m^3 = 1000000000 ml",
+    "date": "2025-08-07T00:12:03.255Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m³ to l",
+    "result": "1000 m³ = 1000000 l",
+    "date": "2025-08-07T00:12:10.186Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m3 to l",
+    "result": "1000 m3 = 1000000 l",
+    "date": "2025-08-07T00:12:16.611Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m³ to m3",
+    "result": "1000 m³ = 1000 m3",
+    "date": "2025-08-07T00:12:34.533Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m^3 to m3",
+    "result": "1000 m^3 = 1000 m3",
+    "date": "2025-08-07T00:12:44.100Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m³ to m^3",
+    "result": "1000 m³ = 1000 m^3",
+    "date": "2025-08-07T00:12:49.441Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m3 to m^3",
+    "result": "1000 m3 = 1000 m^3",
+    "date": "2025-08-07T00:12:55.093Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m³ to km3",
+    "result": "1000 m³ = 0.000001 km3",
+    "date": "2025-08-07T00:13:00.190Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m3 to km3",
+    "result": "1000 m3 = 0.000001 km3",
+    "date": "2025-08-07T00:13:16.545Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m³ to km³",
+    "result": "1000 m³ = 0.000001 km³",
+    "date": "2025-08-07T00:13:24.509Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m^3 to km^3",
+    "result": "1000 m^3 = 0.000001 km^3",
+    "date": "2025-08-07T00:13:35.857Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m3 to km^3",
+    "result": "1000 m3 = 0.000001 km^3",
+    "date": "2025-08-07T00:13:43.592Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m³ to l",
+    "result": "1000 m³ = 1000000 l",
+    "date": "2025-08-07T00:13:53.637Z"
+  },
+  {
+    "type": "convert",
+    "input": "1000 m³ to ml",
+    "result": "1000 m³ = 1000000000 ml",
+    "date": "2025-08-07T00:14:01.982Z"
+  },
+  {
+    "type": "plot-chart",
+    "input": "1,2,3,4,5",
+    "result": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "date": "2025-08-07T00:20:06.580Z"
   }
 ]
