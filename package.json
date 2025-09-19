@@ -1,32 +1,62 @@
 {
   "name": "mathcli-pro",
-  "version": "4.1.6",
-  "description": "Calculator Matematic CLI Avansat",
+  "version": "4.1.7",
+  "description": "Modern CLI calculator for developers, engineers, and power users. Features advanced math expressions, unit conversions, currency rates, batch calculations, ASCII charts, and persistent history.",
   "main": "index.js",
   "bin": {
     "mathcli-pro": "bin/mathcli-pro"
   },
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "scripts": {
     "start": "node index.js",
-    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js"
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
+    "test:coverage": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --coverage",
+    "test:watch": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --watch",
+    "lint": "echo \"Linting not configured yet\"",
+    "clean": "rm -rf node_modules package-lock.json",
+    "reinstall": "npm run clean && npm install",
+    "prepare": "mkdir -p data"
   },
   "keywords": [
     "cli",
-    "math",
     "calculator",
+    "math",
+    "mathematics",
     "terminal",
-    "convert",
-    "chart",
-    "unit",
+    "command-line",
+    "conversion",
+    "unit-conversion",
     "currency",
-    "nodejs"
+    "cryptocurrency",
+    "chart",
+    "visualization",
+    "ascii-chart",
+    "optimization",
+    "batch-processing",
+    "csv",
+    "json",
+    "nodejs",
+    "developer-tools",
+    "engineering",
+    "scientific-calculator"
   ],
-  "author": "gzeu <pricopgeorge@gmail.com>",
+  "author": {
+    "name": "George Pricop",
+    "email": "pricopgeorge@gmail.com",
+    "url": "https://github.com/Gzeu"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gzeu/mathcli-pro.git"
+    "url": "git+https://github.com/Gzeu/mathcli-pro.git"
   },
+  "bugs": {
+    "url": "https://github.com/Gzeu/mathcli-pro/issues"
+  },
+  "homepage": "https://github.com/Gzeu/mathcli-pro#readme",
   "license": "MIT",
   "dependencies": {
     "chalk": "^5.5.0",
@@ -40,5 +70,24 @@
   },
   "devDependencies": {
     "jest": "^30.0.5"
-  }
+  },
+  "files": [
+    "bin/",
+    "commands/",
+    "config/",
+    "data/.gitkeep",
+    "index.js",
+    "catalog.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/Gzeu"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ]
 }
