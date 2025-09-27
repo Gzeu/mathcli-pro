@@ -1,6 +1,6 @@
 {
   "name": "mathcli-pro",
-  "version": "4.1.7",
+  "version": "4.1.8",
   "description": "Modern CLI calculator for developers, engineers, and power users. Features advanced math expressions, unit conversions, currency rates, batch calculations, ASCII charts, and persistent history.",
   "main": "index.js",
   "bin": {
@@ -13,13 +13,27 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
-    "test:coverage": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --coverage",
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --passWithNoTests",
+    "test:coverage": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --coverage --passWithNoTests",
     "test:watch": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --watch",
     "lint": "echo \"Linting not configured yet\"",
     "clean": "rm -rf node_modules package-lock.json",
     "reinstall": "npm run clean && npm install",
     "prepare": "mkdir -p data"
+  },
+  "jest": {
+    "preset": null,
+    "testEnvironment": "node",
+    "extensionsToTreatAsEsm": [".mjs"],
+    "transform": {},
+    "testMatch": [
+      "**/__tests__/**/*.js",
+      "**/?(*.)+(spec|test).js"
+    ],
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "coverageReporters": ["text", "lcov", "html"],
+    "testTimeout": 10000
   },
   "keywords": [
     "cli",
