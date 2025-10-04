@@ -1,14 +1,16 @@
-# MathCLI Pro v4.1.6
+# MathCLI Pro v4.1.12
 
 [![Build Status](https://github.com/Gzeu/mathcli-pro/actions/workflows/ci.yml/badge.svg)](https://github.com/Gzeu/mathcli-pro/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/mathcli-pro.svg)](https://www.npmjs.com/package/mathcli-pro)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg)](https://nodejs.org/)
 [![GitHub stars](https://img.shields.io/github/stars/Gzeu/mathcli-pro.svg?style=social)](https://github.com/Gzeu/mathcli-pro)
 
 **Modern CLI calculator for developers, engineers, and power users.**
 
 A comprehensive command-line mathematics toolkit featuring advanced calculations, unit conversions, data visualization, currency tracking, and automation capabilities.
+
+> 🔧 **Latest Update**: Fixed CI/CD pipeline compatibility issues, updated Node.js requirements to >=20.0.0, and improved ES module support for better reliability.
 
 ## 🚀 Quick Start
 
@@ -152,7 +154,7 @@ mathcli-pro optimize "minimize x^2-4x+3"
 ## 🛠️ Development
 
 ### Prerequisites
-- Node.js >= 18.0.0
+- Node.js >= 20.0.0 (updated from 18.0.0 for better compatibility)
 - npm >= 8.0.0
 
 ### Local Development
@@ -193,17 +195,17 @@ mathcli-pro/
 │   └── .gitkeep        # Keep directory structure
 ├── config/              # Configuration files
 ├── tests/               # Test suites
-│   └── calculate.test.mjs
+│   └── *.test.mjs      # Jest test files
 ├── catalog.js           # Feature catalog
 └── .github/             # GitHub Actions CI/CD
     └── workflows/
-        └── ci.yml
+        └── ci.yml      # Fixed CI/CD pipeline
 ```
 
 ### Available Commands
 
 | Command | Description | Example |
-|---------|-------------|----------|
+|---------|-------------|---------|
 | `calculate` | Evaluate mathematical expressions | `calculate "2+2*5"` |
 | `convert` | Convert between units | `convert "100 cm to m"` |
 | `optimize` | Solve optimization problems | `optimize "minimize x^2+3x-5"` |
@@ -251,6 +253,8 @@ npm test -- calculate.test.mjs
 - ✅ **Data Processing** - CSV/JSON batch operations
 - ✅ **Visualization** - ASCII charts and optimization graphs
 - ✅ **Currency APIs** - Multiple provider support
+- ✅ **CI/CD Pipeline** - Fixed and working properly
+- ✅ **ES Module Support** - Improved compatibility
 - ⏳ **Advanced Testing** - Expanding test coverage
 - ⏳ **Documentation** - Enhanced user guides
 
@@ -360,9 +364,19 @@ A: Use `mathcli-pro history --export=csv` or `--export=json`
 **Q: Which currency APIs are supported?**
 A: exchangerate.host, CoinGecko, Frankfurter, and others. See catalog for full list.
 
+**Q: What Node.js version do I need?**
+A: Node.js 20.0.0 or higher is required for optimal compatibility.
+
 ## 📜 Changelog
 
-### v4.1.6 (Latest)
+### v4.1.12 (Latest)
+- 🔧 **Fixed CI/CD pipeline** - Resolved ES module compatibility issues
+- ⬆️ **Updated Node.js requirement** - Now requires Node.js >=20.0.0
+- 🛠️ **Improved prepare script** - Better ES module support for npm installs
+- 🚀 **Enhanced build process** - Streamlined deployment and testing
+- 📝 **Updated documentation** - Reflects latest changes and requirements
+
+### v4.1.6
 - Added comprehensive .gitignore
 - Cleaned up temporary files
 - Added MIT License
