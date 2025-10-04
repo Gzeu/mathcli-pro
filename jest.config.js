@@ -1,7 +1,7 @@
 export default {
   preset: null,
   testEnvironment: 'node',
-  extensionsToTreatAsEsm: ['.mjs', '.js'],
+  extensionsToTreatAsEsm: ['.mjs'],
   moduleFileExtensions: ['mjs', 'js', 'json'],
   testMatch: [
     '**/tests/**/*.test.mjs',
