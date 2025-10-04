@@ -17,6 +17,13 @@ export function convert(query) {
   // Normalizez unități pentru convert-units
   from = from.replace('^3', '3').replace('³', '3').replace('μ', 'u').replace('µ', 'u');
   to = to.replace('^3', '3').replace('³', '3').replace('μ', 'u').replace('µ', 'u');
+
+  // Handle temperature units
+  if (from === 'f') from = 'degF';
+  if (to === 'f') to = 'degF';
+  if (from === 'c') from = 'degC';
+  if (to === 'c') to = 'degC';
+
   try {
     const result = convertUnits(value).from(from).to(to);
     return `${result} ${match[3]}`;
