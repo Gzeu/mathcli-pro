@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathCLI Pro - Modern CLI Calculator</title>
+    <meta name="description" content="Modern CLI calculator for developers, engineers, and power users. Features advanced math expressions, unit conversions, currency rates, batch calculations, ASCII charts, and persistent history.">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-calculator"></i>
+                <span>MathCLI Pro</span>
+                <span class="version">v4.1.9</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#install">Install</a></li>
+                <li><a href="#docs">Docs</a></li>
+                <li><a href="https://github.com/Gzeu/mathcli-pro" class="github-link"><i class="fab fa-github"></i></a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Modern CLI Calculator for <span class="highlight">Power Users</span></h1>
+                <p class="hero-description">
+                    Advanced mathematical calculations, unit conversions, currency tracking, 
+                    data visualization, and automation - all from your terminal.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#install" class="btn btn-primary">
+                        <i class="fas fa-download"></i>
+                        Install Now
+                    </a>
+                    <a href="#demo" class="btn btn-secondary">
+                        <i class="fas fa-play"></i>
+                        View Demo
+                    </a>
+                </div>
+                <div class="install-command">
+                    <code>npm install -g mathcli-pro</code>
+                    <button class="copy-btn" data-copy="npm install -g mathcli-pro">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-terminal">
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-controls">
+                            <span class="control close"></span>
+                            <span class="control minimize"></span>
+                            <span class="control maximize"></span>
+                        </div>
+                        <div class="terminal-title">mathcli-pro</div>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="prompt">$</span>
+                            <span class="command">mathcli-pro calculate "sin(pi/2) + sqrt(16)"</span>
+                        </div>
+                        <div class="terminal-output">5</div>
+                        <div class="terminal-line">
+                            <span class="prompt">$</span>
+                            <span class="command">mathcli-pro convert "100 cm to m"</span>
+                        </div>
+                        <div class="terminal-output">1 m</div>
+                        <div class="terminal-line">
+                            <span class="prompt">$</span>
+                            <span class="command">mathcli-pro plot-chart 3 1 4 1 5 9</span>
+                        </div>
+                        <div class="terminal-output chart">
+9 ┤     █<br>
+8 ┤     ║<br>
+7 ┤     ║<br>
+6 ┤     ║<br>
+5 ┤     ██<br>
+4 ┤ █   ║║<br>
+3 ██    ║║<br>
+2 ║║    ║║<br>
+1 ║██   ║║<br>
+0 └┴┴┴┴┴┴┘
+                        </div>
+                        <div class="terminal-cursor">█</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Powerful Features</h2>
+                <p>Everything you need for mathematical computing and data processing</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Advanced Mathematics</h3>
+                    <p>Complex expressions, trigonometry, logarithms, optimization problems with ASCII visualization</p>
+                    <ul class="feature-list">
+                        <li>Mathematical expressions using mathjs</li>
+                        <li>Optimization with visual graphs</li>
+                        <li>Statistical functions</li>
+                        <li>Function plotting</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Unit Conversions</h3>
+                    <p>Convert between various units including length, mass, volume, temperature, and speed</p>
+                    <ul class="feature-list">
+                        <li>Length, mass, volume conversions</li>
+                        <li>Temperature (°C, °F, K)</li>
+                        <li>Speed (m/s, km/h, mph, knots)</li>
+                        <li>And many more units</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Currency & Crypto</h3>
+                    <p>Real-time currency rates and cryptocurrency prices from multiple reliable APIs</p>
+                    <ul class="feature-list">
+                        <li>Fiat currencies (USD, EUR, RON)</li>
+                        <li>Cryptocurrency prices</li>
+                        <li>Multiple API providers</li>
+                        <li>Historical data tracking</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Data Visualization</h3>
+                    <p>ASCII charts, histograms, and function plots directly in your terminal</p>
+                    <ul class="feature-list">
+                        <li>ASCII bar charts</li>
+                        <li>Function plotting</li>
+                        <li>Optimization graphs</li>
+                        <li>Colorized output</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Data Processing</h3>
+                    <p>Batch calculations from CSV/JSON files with export capabilities</p>
+                    <ul class="feature-list">
+                        <li>CSV/JSON file processing</li>
+                        <li>Batch calculations</li>
+                        <li>Script automation</li>
+                        <li>Export to multiple formats</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Persistent History</h3>
+                    <p>Keep track of your calculations with persistent history and easy export options</p>
+                    <ul class="feature-list">
+                        <li>Last 20 operations saved</li>
+                        <li>Export to CSV/JSON</li>
+                        <li>Search through history</li>
+                        <li>Reproducible calculations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <div class="section-header">
+                <h2>See It In Action</h2>
+                <p>Interactive examples of MathCLI Pro's capabilities</p>
+            </div>
+            <div class="demo-tabs">
+                <button class="tab-btn active" data-tab="calculations">Calculations</button>
+                <button class="tab-btn" data-tab="conversions">Conversions</button>
+                <button class="tab-btn" data-tab="currency">Currency</button>
+                <button class="tab-btn" data-tab="charts">Charts</button>
+            </div>
+            <div class="demo-content">
+                <div class="tab-content active" id="calculations">
+                    <div class="demo-terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-controls">
+                                <span class="control close"></span>
+                                <span class="control minimize"></span>
+                                <span class="control maximize"></span>
+                            </div>
+                            <div class="terminal-title">Mathematical Calculations</div>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="demo-line">
+                                <span class="prompt">$</span>
+                                <span class="command">mathcli-pro calculate "2^10 + sqrt(144)"</span>
+                            </div>
+                            <div class="output">1036</div>
+                            <div class="demo-line">
+                                <span class="prompt">$</span>
+                                <span class="command">mathcli-pro calculate "sin(pi/4) * cos(pi/3)"</span>
+                            </div>
+                            <div class="output">0.35355339059327373</div>
+                            <div class="demo-line">
+                                <span class="prompt">$</span>
+                                <span class="command">mathcli-pro optimize "minimize x^2-4x+3"</span>
+                            </div>
+                            <div class="output">Minimum at x = 2, f(x) = -1</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="conversions">
+                    <div class="demo-terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-controls">
+                                <span class="control close"></span>
+                                <span class="control minimize"></span>
+                                <span class="control maximize"></span>
+                            </div>
+                            <div class="terminal-title">Unit Conversions</div>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="demo-line">
+                                <span class="prompt">$</span>
+                                <span class="command">mathcli-pro convert "5 ft to m"</span>
+                            </div>
+                            <div class="output">1.524 m</div>
+                            <div class="demo-line">
+                                <span class="prompt">$</span>
+                                <span class="command">mathcli-pro convert "100 F to C"</span>
+                            </div>
+                            <div class="output">37.78 C</div>
+                            <div class="demo-line">
+                                <span class="prompt">$</span>
+                                <span class="command">mathcli-pro convert "60 mph to km/h"</span>
+                            </div>
+                            <div class="output">96.56 km/h</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="currency">
+                    <div class="demo-terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-controls">
+                                <span class="control close"></span>
+                                <span class="control minimize"></span>
+                                <span class="control maximize"></span>
+                            </div>
+                            <div class="terminal-title">Currency & Crypto</div>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="demo-line">
+                                <span class="prompt">$</span>
+                                <span class="command">mathcli-pro fetch-currency USD</span>
+                            </div>
+                            <div class="output">USD/EUR: 0.85 | USD/GBP: 0.73 | USD/RON: 4.55</div>
+                            <div class="demo-line">
+                                <span class="prompt">$</span>
+                                <span class="command">mathcli-pro fetch-currency BTC coingecko</span>
+                            </div>
+                            <div class="output">BTC: $43,250.67 | 24h: +2.34%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="charts">
+                    <div class="demo-terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-controls">
+                                <span class="control close"></span>
+                                <span class="control minimize"></span>
+                                <span class="control maximize"></span>
+                            </div>
+                            <div class="terminal-title">ASCII Charts</div>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="demo-line">
+                                <span class="prompt">$</span>
+                                <span class="command">mathcli-pro plot-chart 2 4 1 5 3</span>
+                            </div>
+                            <div class="output chart-output">
+5 ┤   █<br>
+4 ┤ █ ║<br>
+3 ┤ ║ ║█<br>
+2 ██  ║║<br>
+1 ║║█ ║║<br>
+0 └┴┴┴┴┘
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section id="install" class="installation">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quick Installation</h2>
+                <p>Get started with MathCLI Pro in seconds</p>
+            </div>
+            <div class="install-methods">
+                <div class="install-method">
+                    <h3><i class="fab fa-npm"></i> NPM (Recommended)</h3>
+                    <div class="code-block">
+                        <code>npm install -g mathcli-pro</code>
+                        <button class="copy-btn" data-copy="npm install -g mathcli-pro">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="install-method">
+                    <h3><i class="fas fa-rocket"></i> NPX (Try without installing)</h3>
+                    <div class="code-block">
+                        <code>npx mathcli-pro calculate "2+2*5"</code>
+                        <button class="copy-btn" data-copy="npx mathcli-pro calculate \"2+2*5\"">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="requirements">
+                <h3>Requirements</h3>
+                <ul>
+                    <li><strong>Node.js:</strong> >= 18.0.0</li>
+                    <li><strong>NPM:</strong> >= 8.0.0</li>
+                    <li><strong>OS:</strong> Windows, macOS, Linux</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commands Section -->
+    <section id="docs" class="commands">
+        <div class="container">
+            <div class="section-header">
+                <h2>Available Commands</h2>
+                <p>Comprehensive toolkit for mathematical computing</p>
+            </div>
+            <div class="commands-grid">
+                <div class="command-card">
+                    <h3><code>calculate</code></h3>
+                    <p>Evaluate mathematical expressions</p>
+                    <div class="command-example">
+                        <code>mathcli-pro calculate "sin(pi/2) + sqrt(16)"</code>
+                    </div>
+                </div>
+                <div class="command-card">
+                    <h3><code>convert</code></h3>
+                    <p>Convert between different units</p>
+                    <div class="command-example">
+                        <code>mathcli-pro convert "100 cm to m"</code>
+                    </div>
+                </div>
+                <div class="command-card">
+                    <h3><code>optimize</code></h3>
+                    <p>Solve optimization problems</p>
+                    <div class="command-example">
+                        <code>mathcli-pro optimize "minimize x^2+3x-5"</code>
+                    </div>
+                </div>
+                <div class="command-card">
+                    <h3><code>fetch-currency</code></h3>
+                    <p>Get real-time currency rates</p>
+                    <div class="command-example">
+                        <code>mathcli-pro fetch-currency USD</code>
+                    </div>
+                </div>
+                <div class="command-card">
+                    <h3><code>plot-chart</code></h3>
+                    <p>Generate ASCII charts</p>
+                    <div class="command-example">
+                        <code>mathcli-pro plot-chart 3 1 4 1 5 9</code>
+                    </div>
+                </div>
+                <div class="command-card">
+                    <h3><code>history</code></h3>
+                    <p>View and export calculation history</p>
+                    <div class="command-example">
+                        <code>mathcli-pro history --export=json</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Unit Categories</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Mathematical Functions</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Multiple</div>
+                    <div class="stat-label">Currency APIs</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">MIT</div>
+                    <div class="stat-label">Open Source License</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-calculator"></i>
+                        <span>MathCLI Pro</span>
+                    </div>
+                    <p>Modern CLI calculator for developers, engineers, and power users.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/Gzeu/mathcli-pro"><i class="fab fa-github"></i></a>
+                        <a href="https://www.npmjs.com/package/mathcli-pro"><i class="fab fa-npm"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://github.com/Gzeu/mathcli-pro">GitHub Repository</a></li>
+                        <li><a href="https://github.com/Gzeu/mathcli-pro/issues">Report Issues</a></li>
+                        <li><a href="https://www.npmjs.com/package/mathcli-pro">NPM Package</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Documentation</h4>
+                    <ul>
+                        <li><a href="https://github.com/Gzeu/mathcli-pro#readme">Getting Started</a></li>
+                        <li><a href="https://github.com/Gzeu/mathcli-pro#-usage-examples">Examples</a></li>
+                        <li><a href="https://github.com/Gzeu/mathcli-pro#-contributing">Contributing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:pricopgeorge@gmail.com">Email</a></li>
+                        <li><a href="https://github.com/Gzeu">GitHub Profile</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 George Pricop. Licensed under MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="assets/script.js"></script>
+</body>
+</html>
