@@ -1,8 +1,14 @@
 export default {
+  preset: null,
   testEnvironment: 'node',
   extensionsToTreatAsEsm: ['.mjs', '.js'],
   moduleFileExtensions: ['mjs', 'js', 'json'],
-  testMatch: ['**/tests/**/*.test.mjs', '**/tests/**/*.test.js'],
+  testMatch: [
+    '**/tests/**/*.test.mjs',
+    '**/tests/**/*.test.js',
+    '**/tests/**/*.spec.mjs',
+    '**/tests/**/*.spec.js'
+  ],
   transform: {},
   collectCoverageFrom: [
     'commands/**/*.js',
