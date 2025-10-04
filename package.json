@@ -1,5 +1,5 @@
 {
-  "name": "@gzeu/mathcli-pro",
+  "name": "mathcli-pro",
   "version": "4.1.8",
   "description": "Modern CLI calculator for developers, engineers, and power users. Features advanced math expressions, unit conversions, currency rates, batch calculations, ASCII charts, and persistent history.",
   "main": "index.js",
@@ -19,7 +19,7 @@
     "lint": "echo \"Linting not configured yet\"",
     "clean": "rm -rf node_modules package-lock.json",
     "reinstall": "npm run clean && npm install",
-    "prepare": "node -e \"import fs from 'fs'; if (!fs.existsSync('data')) fs.mkdirSync('data');\""
+    "prepare": "node -e \"import { mkdir } from 'fs/promises'; import { existsSync } from 'fs'; if (!existsSync('data')) await mkdir('data', { recursive: true });\""
   },
   "jest": {
     "preset": null,
