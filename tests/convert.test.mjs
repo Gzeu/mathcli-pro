@@ -19,12 +19,12 @@ describe('convert function', () => {
 
   test('should handle invalid conversion', () => {
     const result = convert('invalid conversion');
-    expect(result).toHaveProperty('error');
+    expect(result).toBe('Invalid format. Usage: convert "<value> <from> to <to>"');
   });
 
   test('should handle empty input', () => {
     const result = convert('');
-    expect(result).toHaveProperty('error');
+    expect(result).toBe('Invalid input. Usage: convert "<value> <from> to <to>"');
   });
 
   test('should convert speed units', () => {
