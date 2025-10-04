@@ -1,6 +1,6 @@
 {
   "name": "mathcli-pro",
-  "version": "4.1.9",
+  "version": "4.1.10",
   "description": "Modern CLI calculator for developers, engineers, and power users. Features advanced math expressions, unit conversions, currency rates, batch calculations, ASCII charts, and persistent history.",
   "main": "index.js",
   "bin": {
@@ -24,7 +24,9 @@
   "jest": {
     "preset": null,
     "testEnvironment": "node",
-    "extensionsToTreatAsEsm": [".mjs"],
+    "extensionsToTreatAsEsm": [
+      ".mjs"
+    ],
     "transform": {},
     "testMatch": [
       "**/__tests__/**/*.js",
@@ -32,7 +34,11 @@
     ],
     "collectCoverage": true,
     "coverageDirectory": "coverage",
-    "coverageReporters": ["text", "lcov", "html"],
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ],
     "testTimeout": 10000
   },
   "keywords": [
@@ -80,7 +86,8 @@
     "figlet": "^1.9.3",
     "inquirer": "^12.9.6",
     "mathjs": "^14.8.1",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "rxjs": "^7.8.2"
   },
   "devDependencies": {
     "jest": "^30.2.0"
