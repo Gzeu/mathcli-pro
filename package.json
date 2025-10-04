@@ -1,6 +1,6 @@
 {
   "name": "mathcli-pro",
-  "version": "4.1.11",
+  "version": "4.1.12",
   "description": "Modern CLI calculator for developers, engineers, and power users. Features advanced math expressions, unit conversions, currency rates, batch calculations, ASCII charts, and persistent history.",
   "main": "index.js",
   "bin": {
@@ -8,7 +8,7 @@
   },
   "type": "module",
   "engines": {
-    "node": ">=18.0.0",
+    "node": ">=20.0.0",
     "npm": ">=8.0.0"
   },
   "scripts": {
@@ -19,7 +19,7 @@
     "lint": "echo \"Linting not configured yet\"",
     "clean": "rm -rf node_modules package-lock.json",
     "reinstall": "npm run clean && npm install",
-    "prepare": "node -e \"import { mkdir } from 'fs/promises'; import { existsSync } from 'fs'; if (!existsSync('data')) await mkdir('data', { recursive: true });\""
+    "prepare": "node -e \"const fs = require('fs'); const path = require('path'); if (!fs.existsSync('data')) fs.mkdirSync('data', { recursive: true });\""
   },
   "keywords": [
     "cli",
