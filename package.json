@@ -19,7 +19,7 @@
     "lint": "echo \"Linting not configured yet\"",
     "clean": "rm -rf node_modules package-lock.json",
     "reinstall": "npm run clean && npm install",
-    "prepare": "mkdir -p data"
+    "prepare": "node -e \"import fs from 'fs'; if (!fs.existsSync('data')) fs.mkdirSync('data');\""
   },
   "jest": {
     "preset": null,
