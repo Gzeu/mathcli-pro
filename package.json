@@ -1,5 +1,5 @@
 {
-  "name": "mathcli-pro",
+  "name": "@gzeu/mathcli-pro",
   "version": "4.1.8",
   "description": "Modern CLI calculator for developers, engineers, and power users. Features advanced math expressions, unit conversions, currency rates, batch calculations, ASCII charts, and persistent history.",
   "main": "index.js",
@@ -73,17 +73,17 @@
   "homepage": "https://github.com/Gzeu/mathcli-pro#readme",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^5.5.0",
+    "chalk": "^5.6.2",
     "cli-chart": "^0.3.1",
     "convert-units": "^2.3.4",
     "csv-parse": "^6.1.0",
-    "figlet": "^1.8.2",
-    "inquirer": "^12.9.0",
-    "mathjs": "^14.6.0",
+    "figlet": "^1.9.3",
+    "inquirer": "^12.9.6",
+    "mathjs": "^14.8.1",
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
-    "jest": "^30.0.5"
+    "jest": "^30.2.0"
   },
   "files": [
     "bin/",
