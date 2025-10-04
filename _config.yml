@@ -1,0 +1,46 @@
+# GitHub Pages Configuration
+title: "MathCLI Pro - Modern CLI Calculator"
+description: "Modern CLI calculator for developers, engineers, and power users. Features advanced math expressions, unit conversions, currency rates, batch calculations, ASCII charts, and persistent history."
+url: "https://gzeu.github.io"
+baseurl: "/mathcli-pro"
+author: "George Pricop"
+email: "pricopgeorge@gmail.com"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Exclude files from processing
+exclude:
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - README.md
+  - .gitignore
+  - tests/
+  - commands/
+  - config/
+  - data/
+  - bin/
+
+# Plugin settings
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# SEO settings
+seo:
+  name: "MathCLI Pro"
+  type: "WebSite"
+  links:
+    - "https://github.com/Gzeu/mathcli-pro"
+    - "https://www.npmjs.com/package/mathcli-pro"
+
+# Social settings
+github_username: Gzeu
+npm_package: mathcli-pro
+
+# Analytics (uncomment and add your tracking ID if needed)
+# google_analytics: UA-XXXXXXXX-X
