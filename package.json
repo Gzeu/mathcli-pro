@@ -1,6 +1,6 @@
 {
   "name": "mathcli-pro",
-  "version": "4.1.10",
+  "version": "4.1.11",
   "description": "Modern CLI calculator for developers, engineers, and power users. Features advanced math expressions, unit conversions, currency rates, batch calculations, ASCII charts, and persistent history.",
   "main": "index.js",
   "bin": {
