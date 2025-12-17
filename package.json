@@ -1,6 +1,6 @@
 {
   "name": "mathcli-pro",
-  "version": "4.1.12",
+  "version": "4.2.0",
   "description": "Modern CLI calculator for developers, engineers, and power users. Features advanced math expressions, unit conversions, currency rates, batch calculations, ASCII charts, and persistent history.",
   "main": "index.js",
   "bin": {
@@ -16,7 +16,10 @@
     "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --passWithNoTests",
     "test:coverage": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --coverage --passWithNoTests",
     "test:watch": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --watch",
-    "lint": "echo \"Linting not configured yet\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"**/*.{js,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,json,md}\"",
     "clean": "rm -rf node_modules package-lock.json",
     "reinstall": "npm run clean && npm install",
     "prepare": "node -e \"const fs = require('fs'); const path = require('path'); if (!fs.existsSync('data')) fs.mkdirSync('data', { recursive: true });\""
@@ -64,12 +67,14 @@
     "convert-units": "^2.3.4",
     "csv-parse": "^6.1.0",
     "figlet": "^1.9.3",
-    "inquirer": "^12.9.6",
-    "mathjs": "^14.8.1",
+    "inquirer": "^13.1.0",
+    "mathjs": "^15.0.0",
     "node-fetch": "^3.3.2",
     "rxjs": "^7.8.2"
   },
   "devDependencies": {
+    "eslint": "^9.18.0",
+    "prettier": "^3.4.2",
     "jest": "^30.2.0"
   },
   "files": [
