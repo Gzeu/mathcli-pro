@@ -1,7 +1,7 @@
 {
   "name": "mathcli-pro",
   "version": "4.2.0",
-  "description": "Modern CLI calculator for developers, engineers, and power users. Features advanced math expressions, unit conversions, currency rates, batch calculations, ASCII charts, and persistent history.",
+  "description": "Modern CLI calculator for developers, engineers, and power users. Features AI API costs, MEV calculations, serverless optimization, advanced math, unit conversions, and more.",
   "main": "index.js",
   "bin": {
     "mathcli-pro": "bin/mathcli-pro"
@@ -31,6 +31,29 @@
     "mathematics",
     "terminal",
     "command-line",
+    "ai",
+    "ai-cost-calculator",
+    "openai",
+    "claude",
+    "gemini",
+    "gpt-5",
+    "prompt-caching",
+    "batch-api",
+    "mev",
+    "mev-calculator",
+    "defi",
+    "arbitrage",
+    "flashloan",
+    "liquidation",
+    "ethereum",
+    "multiversx",
+    "egld",
+    "serverless",
+    "serverless-cost",
+    "aws-lambda",
+    "cloudflare-workers",
+    "vercel",
+    "cost-optimizer",
     "conversion",
     "unit-conversion",
     "currency",
@@ -45,7 +68,13 @@
     "nodejs",
     "developer-tools",
     "engineering",
-    "scientific-calculator"
+    "scientific-calculator",
+    "matrix",
+    "physics",
+    "probability",
+    "gaming",
+    "web3",
+    "blockchain"
   ],
   "author": {
     "name": "George Pricop",
@@ -85,7 +114,8 @@
     "index.js",
     "catalog.js",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "HIGH_POTENTIAL_FEATURES.md"
   ],
   "funding": {
     "type": "github",
