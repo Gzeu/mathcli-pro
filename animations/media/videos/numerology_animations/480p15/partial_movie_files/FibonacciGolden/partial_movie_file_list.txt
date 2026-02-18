@@ -1,0 +1,7 @@
+# This file is used internally by FFMPEG.
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_animations/480p15/partial_movie_files/FibonacciGolden/1584795214_525215917_223132457.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_animations/480p15/partial_movie_files/FibonacciGolden/4072820271_1991952727_96264966.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_animations/480p15/partial_movie_files/FibonacciGolden/4072820271_2819046232_131850194.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_animations/480p15/partial_movie_files/FibonacciGolden/4072820271_4217992463_2749196115.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_animations/480p15/partial_movie_files/FibonacciGolden/4072820271_2272816278_3632531085.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_animations/480p15/partial_movie_files/FibonacciGolden/4072820271_2552855209_3771414463.mp4'

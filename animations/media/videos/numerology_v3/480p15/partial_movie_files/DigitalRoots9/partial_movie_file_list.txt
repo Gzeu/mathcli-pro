@@ -1,0 +1,11 @@
+# This file is used internally by FFMPEG.
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_v3/480p15/partial_movie_files/DigitalRoots9/1584795214_1167036756_223132457.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_v3/480p15/partial_movie_files/DigitalRoots9/4072820271_611654877_3395470174.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_v3/480p15/partial_movie_files/DigitalRoots9/4072820271_2021176970_1520376074.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_v3/480p15/partial_movie_files/DigitalRoots9/4072820271_1836504434_4016848961.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_v3/480p15/partial_movie_files/DigitalRoots9/4072820271_650334787_428412102.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_v3/480p15/partial_movie_files/DigitalRoots9/4072820271_953736587_1502012067.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_v3/480p15/partial_movie_files/DigitalRoots9/4072820271_4217992463_1236942484.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_v3/480p15/partial_movie_files/DigitalRoots9/4072820271_3150483746_722957844.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_v3/480p15/partial_movie_files/DigitalRoots9/4072820271_2521461642_3643016301.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_v3/480p15/partial_movie_files/DigitalRoots9/4072820271_2552855209_1767358724.mp4'

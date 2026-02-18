@@ -1,0 +1,10 @@
+# This file is used internally by FFMPEG.
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_animations/480p15/partial_movie_files/UlamSpiral/1678659552_2158503772_223132457.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_animations/480p15/partial_movie_files/UlamSpiral/3190087075_2650879450_843399595.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_animations/480p15/partial_movie_files/UlamSpiral/3190087075_3192569887_2762406680.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_animations/480p15/partial_movie_files/UlamSpiral/3190087075_1219373736_2421536906.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_animations/480p15/partial_movie_files/UlamSpiral/3842704468_2214750183_2771075029.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_animations/480p15/partial_movie_files/UlamSpiral/3342045565_1436906429_3768301680.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_animations/480p15/partial_movie_files/UlamSpiral/1246497183_2214750183_367500794.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_animations/480p15/partial_movie_files/UlamSpiral/1752472758_349993330_367500794.mp4'
+file 'file:E:/github/mathcli-pro/animations/media/videos/numerology_animations/480p15/partial_movie_files/UlamSpiral/1752472758_1219373736_1696138030.mp4'
