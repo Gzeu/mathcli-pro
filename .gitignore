@@ -125,3 +125,12 @@ build/
 
 # Documentation build
 docs/build/
+
+# Manim animations
+animations/media/
+animations/__pycache__/
+animations/*.aux
+animations/*.dvi
+animations/*.tex
+animations/*.log
+animations/tiktok_spiritual/
