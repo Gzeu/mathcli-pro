@@ -1,0 +1,6 @@
+{
+  "maxLeverage": 20,
+  "liquidationThreshold": 0.05,
+  "telegramChatId": "771600375",
+  "dryRun": true
+}

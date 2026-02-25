@@ -1,0 +1,15 @@
+{
+  "positions": [
+    {
+      "symbol": "BTCUSDT",
+      "side": "LONG",
+      "leverage": 10,
+      "current_price": 50000,
+      "liquidation_price": 49500,
+      "risk": 0.08,
+      "entryPrice": 49800,
+      "unrealizedPnl": 200,
+      "marginType": "ISOLATED"
+    }
+  ]
+}
