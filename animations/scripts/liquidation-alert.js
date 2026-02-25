@@ -6,8 +6,12 @@ const fs = require('fs'); // Adăugat aici pentru a fi disponibil global
 
 // MOD PROD: Use env vars and respect dryRun
 config.dryRun = process.env.DRY_RUN === 'true' || false;
-config.telegramToken = process.env.TELEGRAM_BOT_TOKEN;
-config.telegramChatId = process.env.TELEGRAM_CHAT_ID;
+config.telegramToken = process.env.TELEGRAM_TOKEN;
+config.telegramChatId = process.env.CHAT_ID;
+
+// Debug: Afișează valorile citite
+console.log("[DEBUG] TELEGRAM_TOKEN:", config.telegramToken ? "*** (setat)" : "N/A");
+console.log("[DEBUG] CHAT_ID:", config.telegramChatId || "N/A");
 
 const LOG_FILE = 'binance-alerts.log'; // Definit aici pentru a fi disponibil global
 
@@ -31,6 +35,8 @@ async function checkLiquidationRisk() {
     // MOD PROD: Use real data only
 if (!positions.length) {
   console.log(`✅ Niciuna poziție deschisă. (Last check: ${new Date().toISOString()})`);
+  // Oprește procesul după verificare pentru a evita SIGKILL
+  process.exit(0);
   return;
 }
     
@@ -45,14 +51,23 @@ if (!positions.length) {
         continue; // Sari peste fără a loga (evită spam-ul)
       }
 
-      // FORCE HIGH RISK FOR TESTING
-      let riskPct = 15;
-      // Calcul uniform al riscului (indiferent de side)
-      riskPct = Math.abs(((markPrice - entryPrice) / (entryPrice - liquidationPrice)) * 100);
-      if (isNaN(riskPct) || !isFinite(riskPct)) {
-        riskPct = 0; // Resetare dacă calculul eșuează
+      // Calcul corect al riscului în funcție de side
+      let riskPct;
+      if (pos.positionSide === "LONG") {
+        riskPct = ((markPrice - liquidationPrice) / (entryPrice - liquidationPrice)) * 100;
+      } else if (pos.positionSide === "SHORT") {
+        riskPct = ((liquidationPrice - markPrice) / (liquidationPrice - entryPrice)) * 100;
+      } else {
+        // Poziție invalidă (ex: "BOTH") - ignoră
+        console.log(`⚠️ Poziție invalidă (${pos.positionSide}) pentru ${pos.symbol}. Ignor.`);
+        continue;
       }
-      if (riskPct < 0) riskPct = 0;
+      
+      // Validare rezultate
+      if (isNaN(riskPct) || !isFinite(riskPct) || riskPct < 0) {
+        riskPct = 0;
+        console.log(`⚠️ Calcul risc invalid pentru ${pos.symbol}. Setat la 0%.`);
+      }
 
       const logMsg = `[${new Date().toISOString()}] ${pos.symbol} | Side: ${pos.positionSide} | Entry: ${entryPrice} | Mark: ${markPrice} | Liquidity: ${liquidationPrice} | Risk: ${riskPct.toFixed(2)}%`;
       fs.appendFileSync(LOG_FILE, logMsg + '\n');
@@ -91,7 +106,6 @@ async function sendTelegramAlert(message) {
   }
 }
 
-// Rulează imediat și apoi la fiecare 5 minute
-console.log("=== Pornire Monitor Lichidare ===");
+// Rulează o singură dată (cron-ul va relua scriptul la fiecare 5 minute)
+console.log("=== Pornire Monitor Lichidare (Single Run) ===");
 checkLiquidationRisk();
-setInterval(checkLiquidationRisk, 5 * 60 * 1000);
