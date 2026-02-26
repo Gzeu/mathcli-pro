@@ -22,6 +22,9 @@ if (!config.telegramToken || !config.telegramChatId) {
   logStream.write(`\n=== ALERT CRITICĂ ${new Date().toISOString()} ===\n`);
 }
 
+// Canale suportate pentru alerte (doar Telegram, WhatsApp a fost eliminat din cauza erorilor cron)
+const channels = ['telegram'];
+
 console.log("[CONFIG] dryRun:", config.dryRun);
 console.log("[CONFIG] telegramToken exists:", !!config.telegramToken);
 
