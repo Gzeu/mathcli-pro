@@ -63,16 +63,44 @@ class BinanceAPI {
    * Obține poziția curentă pentru un simbol
    */
   async getOpenPositions() {
-    const queryString = new URLSearchParams({
-      timestamp: Date.now(),
-      recvWindow: 5000,
-    }).toString();
-    const signature = this._generateSignature(queryString);
-    const url = `${this.baseUrl}/fapi/v2/positionRisk?${queryString}&signature=${signature}`;
-    const response = await axios.get(url, {
-      headers: { 'X-MBX-APIKEY': this.apiKey },
-    });
-    return response.data.filter(pos => parseFloat(pos.positionAmt) !== 0);
+    try {
+      const queryString = new URLSearchParams({
+        timestamp: Date.now(),
+        recvWindow: 5000,
+      }).toString();
+      const signature = this._generateSignature(queryString);
+      const url = `${this.baseUrl}/fapi/v2/positionRisk?${queryString}&signature=${signature}`;
+      console.log(`[DEBUG] Fetching positions from: ${url}`);
+      const response = await axios.get(url, {
+        headers: { 'X-MBX-APIKEY': this.apiKey },
+      });
+      console.log(`[DEBUG] Raw positions response:`, response.data);
+      const openPositions = response.data.filter(pos => parseFloat(pos.positionAmt) !== 0);
+      console.log(`[DEBUG] Filtered open positions:`, openPositions);
+      return openPositions;
+    } catch (error) {
+      console.error('[ERROR] Failed to fetch positions:', {
+        status: error.response?.status,
+        data: error.response?.data,
+        message: error.message
+      });
+      throw error;
+    }
+  }
+
+  async ping() {
+    try {
+      const response = await axios.get(`${this.baseUrl}/fapi/v1/ping`);
+      console.log('[DEBUG] Ping successful:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('[ERROR] Ping failed:', {
+        status: error.response?.status,
+        data: error.response?.data,
+        message: error.message
+      });
+      throw error;
+    }
   }
 
   async getPosition(symbol) {
@@ -98,6 +126,31 @@ class BinanceAPI {
       leverage,
     });
   }
+}
+
+// CLI Handler
+const args = process.argv.slice(2);
+if (args.includes('--ping')) {
+  (async () => {
+    try {
+      const api = new BinanceAPI();
+      await api.ping();
+    } catch (error) {
+      console.error('[CLI ERROR] Ping failed. Check API keys and permissions.');
+      process.exit(1);
+    }
+  })();
+} else if (args.includes('--positions')) {
+  (async () => {
+    try {
+      const api = new BinanceAPI();
+      const positions = await api.getOpenPositions();
+      console.log('Open Positions:', positions.length > 0 ? positions : 'None');
+    } catch (error) {
+      console.error('[CLI ERROR] Failed to fetch positions. Check API keys and permissions.');
+      process.exit(1);
+    }
+  })();
 }
 
 module.exports = new BinanceAPI();

@@ -2,18 +2,18 @@
 delete require.cache[require.resolve('./binance-api.cjs')];
 const binanceAPI = require('./binance-api.cjs');
 const config = require('./config.json');
-const fs = require('fs'); // Adăugat aici pentru a fi disponibil global
+const fs = require('fs');
+const axios = require('axios');
 
 // MOD PROD: Use env vars and respect dryRun
 config.dryRun = process.env.DRY_RUN === 'true' || false;
 config.telegramToken = process.env.TELEGRAM_TOKEN;
 config.telegramChatId = process.env.CHAT_ID;
 
-// Debug: Afișează valorile citite
 console.log("[DEBUG] TELEGRAM_TOKEN:", config.telegramToken ? "*** (setat)" : "N/A");
 console.log("[DEBUG] CHAT_ID:", config.telegramChatId || "N/A");
 
-const LOG_FILE = 'binance-alerts.log'; // Definit aici pentru a fi disponibil global
+const LOG_FILE = 'binance-alerts.log';
 
 let logStream = null;
 if (!config.telegramToken || !config.telegramChatId) {
@@ -24,62 +24,71 @@ if (!config.telegramToken || !config.telegramChatId) {
 
 console.log("[CONFIG] dryRun:", config.dryRun);
 console.log("[CONFIG] telegramToken exists:", !!config.telegramToken);
-const axios = require('axios');
 
 async function checkLiquidationRisk() {
   try {
     console.log(`[${new Date().toISOString()}] Verificare risc lichidare...`);
     const positions = await binanceAPI.getOpenPositions();
-    
-    // TEST MODE: Simulează o poziție critică
-    // MOD PROD: Use real data only
-if (!positions.length) {
-  console.log(`✅ Niciuna poziție deschisă. (Last check: ${new Date().toISOString()})`);
-  // Oprește procesul după verificare pentru a evita SIGKILL
-  process.exit(0);
-  return;
-}
-    
-    console.log(`TEST: Found ${positions.length} positions`);
+
+    if (!positions.length) {
+      console.log(`✅ Niciuna poziție deschisă. (Last check: ${new Date().toISOString()})`);
+      process.exit(0);
+      return;
+    }
+
+    console.log(`Found ${positions.length} open position(s)`);
+
     for (const pos of positions) {
       const liquidationPrice = parseFloat(pos.liquidationPrice);
       const markPrice = parseFloat(pos.markPrice);
       const entryPrice = parseFloat(pos.entryPrice);
 
-      // Ignoră pozițiile cu date invalide (fără spam în loguri)
+      // Ignoră pozițiile cu date invalide
       if (!liquidationPrice || liquidationPrice <= 0 || isNaN(liquidationPrice)) {
-        continue; // Sari peste fără a loga (evită spam-ul)
+        continue;
       }
 
       // Calcul corect al riscului în funcție de side
       let riskPct;
-      if (pos.positionSide === "LONG") {
+      let effectiveSide = pos.positionSide;
+
+      if (effectiveSide === 'BOTH') {
+        // Hedge mode: determinăm side-ul real din positionAmt
+        const amt = parseFloat(pos.positionAmt);
+        if (amt > 0) {
+          effectiveSide = 'LONG';
+        } else if (amt < 0) {
+          effectiveSide = 'SHORT';
+        } else {
+          console.log(`⚠️ Poziție BOTH fără valoare (${pos.symbol}). Ignor.`);
+          continue;
+        }
+      }
+
+      if (effectiveSide === 'LONG') {
         riskPct = ((markPrice - liquidationPrice) / (entryPrice - liquidationPrice)) * 100;
-      } else if (pos.positionSide === "SHORT") {
+      } else if (effectiveSide === 'SHORT') {
         riskPct = ((liquidationPrice - markPrice) / (liquidationPrice - entryPrice)) * 100;
       } else {
-        // Poziție invalidă (ex: "BOTH") - ignoră
         console.log(`⚠️ Poziție invalidă (${pos.positionSide}) pentru ${pos.symbol}. Ignor.`);
         continue;
       }
-      
+
       // Validare rezultate
       if (isNaN(riskPct) || !isFinite(riskPct) || riskPct < 0) {
         riskPct = 0;
         console.log(`⚠️ Calcul risc invalid pentru ${pos.symbol}. Setat la 0%.`);
       }
 
-      const logMsg = `[${new Date().toISOString()}] ${pos.symbol} | Side: ${pos.positionSide} | Entry: ${entryPrice} | Mark: ${markPrice} | Liquidity: ${liquidationPrice} | Risk: ${riskPct.toFixed(2)}%`;
+      const logMsg = `[${new Date().toISOString()}] ${pos.symbol} | Side: ${effectiveSide} | Entry: ${entryPrice} | Mark: ${markPrice} | Liquidity: ${liquidationPrice} | Risk: ${riskPct.toFixed(2)}%`;
       fs.appendFileSync(LOG_FILE, logMsg + '\n');
       console.log(logMsg);
-      
+
       // ALERTĂ DOAR DACĂ RISCUL DEPĂȘEȘTE PRAGUL
-      console.log(`TEST: riskPct=${riskPct}, threshold=${config.liquidationThreshold}, token=${!!config.telegramToken}`);
       if (riskPct > config.liquidationThreshold) {
-        const alertMsg = `🚨 ALERTĂ LICHIDARE: ${pos.symbol} | Side: ${pos.positionSide} | Risc: ${riskPct.toFixed(2)}% | Entry: ${entryPrice} | Lichidare: ${liquidationPrice}`;
+        const alertMsg = `🚨 ALERTĂ LICHIDARE: ${pos.symbol} | Side: ${effectiveSide} | Risc: ${riskPct.toFixed(2)}% | Entry: ${entryPrice} | Lichidare: ${liquidationPrice}`;
         fs.appendFileSync(LOG_FILE, `ALERT: ${alertMsg}\n`);
         if (logStream) logStream.write(`ALERT: ${alertMsg}\n`);
-        else console.log("⚠️ logStream indisponibil, scriu doar în fișier");
         await sendTelegramAlert(alertMsg);
       }
     }
