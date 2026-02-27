@@ -1,0 +1,22 @@
+# Logs și fișiere generate automat
+*.log
+*.tmp
+
+# Fișiere de memorie/idei generate de agenți (opțional)
+scripts/HEARTBEAT_REPORT.md
+scripts/IDEAS.md
+scripts/MEMORY.md
+
+# Build artifacts (Manim, TikTok etc.)
+__pycache__/
+*.mp4
+*.gif
+*.png
+!**/animations/output/
+
+# Node.js
+node_modules/
+.env
+
+# Binance API logs
+*-api-logs.json
