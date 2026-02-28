@@ -102,9 +102,9 @@
     "rxjs": "^7.8.2"
   },
   "devDependencies": {
-    "eslint": "^9.18.0",
-    "prettier": "^3.4.2",
-    "jest": "^30.2.0"
+    "eslint": "^10.0.2",
+    "jest": "^30.2.0",
+    "prettier": "^3.4.2"
   },
   "files": [
     "bin/",
