@@ -2,6 +2,19 @@
 import convertUnits from 'convert-units';
 
 export function convert(query) {
+  // Add support for degF and mph
+  const unitMap = {
+    'degF': 'F',
+    'mph': 'mi/h'
+  };
+  
+  // Replace unsupported units with supported aliases
+  for (const [unsupported, supported] of Object.entries(unitMap)) {
+    if (query && query.includes(unsupported)) {
+      query = query.replace(unsupported, supported);
+    }
+  }
+  
   // Exemplu query: "100 cm to m" sau "5 kg to lb"
   if (!query || typeof query !== 'string') {
     return 'Invalid input. Usage: convert "<value> <from> to <to>"';

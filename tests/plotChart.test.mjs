@@ -1,5 +1,13 @@
-import { test, expect, describe } from '@jest/globals';
+import { test, expect, describe, afterEach } from '@jest/globals';
 import { plotChart } from '../commands/plotChart.js';
+
+// Mock console.log to avoid output during tests
+jest.spyOn(console, 'log').mockImplementation(() => {});
+
+// Cleanup after each test
+afterEach(() => {
+  jest.restoreAllMocks();
+});
 
 describe('plotChart function', () => {
   test('should plot simple array', () => {
